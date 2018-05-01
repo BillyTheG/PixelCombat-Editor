@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+	<type>Ruffy3</type>
+	<sprites>
+		<airSpecialAttack1 airBool="false" airIndex="0" loopIndex="0" loops="false">
+			<img duration="300" key="0">/images/IMG_Ruffy_Dash_7.png</img>
+			<img duration="550" key="1">/images/IMG_Ruffy_Gear2_Transform_1.png</img>
+			<img duration="200" key="2">/images/IMG_Ruffy_Gear2_Transform_2.png</img>
+			<img duration="200" key="3">/images/IMG_Ruffy_Gear2_Transform_3.png</img>
+			<img duration="200" key="4">/images/IMG_Ruffy_Gear2_Transform_4.png</img>
+			<img duration="500" key="5">/images/IMG_Ruffy_Gear2_Transform_5.png</img>
+			<img duration="400" key="6">/images/IMG_Ruffy_Gear2_Transform_6.png</img>
+			<img duration="200" key="7">/images/IMG_Ruffy_Gear2_Transform_7.png</img>
+			<img duration="200" key="8">/images/IMG_Ruffy_Gear2_Transform_8.png</img>
+			<img duration="200" key="9">/images/IMG_Ruffy_Gear2_Transform_9.png</img>
+			<img duration="200" key="10">/images/IMG_Ruffy_Gear2_Transform_10.png</img>
+			<img duration="200" key="11">/images/IMG_Ruffy_Gear2_Transform_11.png</img>
+			<img duration="200" key="12">/images/IMG_Ruffy_Gear2_Transform_12.png</img>
+		</airSpecialAttack1>
+	</sprites>
+</character>

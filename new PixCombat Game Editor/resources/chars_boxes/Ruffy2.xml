@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+	<type>Ruffy2</type>
+	<boxes>
+		<runAttack2>
+			<box_list picture="0">
+				<box height="2.0999985" hurts="false" id="0" width="1.5" x="0.76000214" y="-0.119999886"/>
+			</box_list>
+			<box_list picture="1">
+				<box height="2.0999994" hurts="false" id="0" width="1.5" x="0.65999794" y="-4.2915344E-6"/>
+			</box_list>
+			<box_list picture="2">
+				<box height="2.0999985" hurts="false" id="0" width="1.5" x="1.0599957" y="0.05999279"/>
+			</box_list>
+			<box_list picture="3"/>
+			<box_list picture="4">
+				<box height="2.0999985" hurts="false" id="0" width="1.5" x="0.5599842" y="0.09998703"/>
+				<box height="1.3999996" hurts="true" id="1" width="4.199997" x="2.7799911" y="0.16000271"/>
+			</box_list>
+			<box_list picture="5">
+				<box height="2.0999985" hurts="false" id="0" width="1.5000019" x="0.63997936" y="0.01998043"/>
+				<box height="1.3999996" hurts="true" id="1" width="4.199997" x="2.579977" y="0.19999981"/>
+			</box_list>
+			<box_list picture="6">
+				<box height="2.0999985" hurts="false" id="0" width="1.5000019" x="-0.060032845" y="0.15997505"/>
+			</box_list>
+			<box_list picture="7">
+				<box height="3.1499977" hurts="false" id="0" width="1.2000027" x="-0.18004322" y="0.13997078"/>
+			</box_list>
+		</runAttack2>
+		<runAttack1>
+			<box_list picture="0">
+				<box height="2.9499989" hurts="false" id="0" width="1.0" x="0.11999607" y="0.24000263"/>
+			</box_list>
+			<box_list picture="1">
+				<box height="2.9499989" hurts="false" id="0" width="1.0" x="0.5399952" y="0.3399973"/>
+			</box_list>
+			<box_list picture="2">
+				<box height="2.9499989" hurts="false" id="0" width="1.0" x="0.6599941" y="0.27999783"/>
+			</box_list>
+			<box_list picture="3">
+				<box height="2.9499989" hurts="false" id="0" width="1.0" x="0.4799881" y="0.33999348"/>
+			</box_list>
+			<box_list picture="4">
+				<box height="2.9499989" hurts="false" id="0" width="1.0" x="0.33998775" y="0.25998688"/>
+				<box height="1.4000006" hurts="true" id="1" width="5.7000046" x="-1.1200008" y="-0.47999907"/>
+			</box_list>
+			<box_list picture="5">
+				<box height="2.9499989" hurts="false" id="0" width="1.0" x="-0.08001518" y="0.25997925"/>
+				<box height="1.3999996" hurts="true" id="1" width="3.4000015" x="0.7999935" y="-0.71999884"/>
+			</box_list>
+			<box_list picture="6">
+				<box height="2.9499989" hurts="false" id="0" width="1.0" x="-0.08002472" y="0.19997406"/>
+			</box_list>
+			<box_list picture="7">
+				<box height="2.9499989" hurts="false" id="0" width="1.0" x="-0.1200304" y="0.17996883"/>
+			</box_list>
+		</runAttack1>
+	</boxes>
+</character>

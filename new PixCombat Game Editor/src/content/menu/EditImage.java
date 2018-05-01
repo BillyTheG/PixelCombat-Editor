@@ -1,0 +1,248 @@
+package content.menu;
+
+import java.util.List;
+
+import content.LocatedImage;
+import content.MainContent;
+import content.misc.Other;
+import javafx.scene.Group;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import main.Editor;
+import math.Vector2d;
+
+public class EditImage extends MenuObject {
+
+	public static final Image bground = Other.loadImage("/images/menu/IMG_MenuBox_EditImage.png");
+
+	private float xOffset;
+	private float yOffset;
+	private List<Float> currentTimes;
+	private TextField duration_input;
+	private TextField imageX_input;
+	private TextField imageY_input;
+	private LocatedImage currentImage = null;
+
+	
+
+	public EditImage(Vector2d pos, Group root, MainContent contentManager) {
+		super(pos, root, contentManager);
+	}
+
+	@Override
+	public void repaint(GraphicsContext graphicsContext) {
+		int xPos = (int) ((getPos().x + xOffset) * Editor.FIELD_SIZE);
+		int yPos = (int) ((getPos().y + yOffset) * Editor.FIELD_SIZE);
+		graphicsContext.drawImage(bground, xPos, yPos);
+	}
+
+	@Override
+	public void update() {
+
+		this.currentImage = contentManager.getCurrentImage();
+		this.currentTimes = contentManager.getCurrentTimes();
+		
+		if (currentImage != null) {
+			this.imageX_input.setText("" + currentImage.getOffsetPos().x);
+			this.imageY_input.setText("" + currentImage.getOffsetPos().y);
+		}
+
+		if (currentTimes != null) {
+			try {
+				contentManager.setCurrentDuration(currentTimes.get(contentManager.getCurrentIndex()));
+				if(!(""+currentTimes.get(contentManager.getCurrentIndex())).equals(getDuration_input().getText().toString()))
+				getDuration_input().setText("" + currentTimes.get(contentManager.getCurrentIndex()));
+			} catch (IndexOutOfBoundsException e) {
+				
+			}
+		}
+	}
+
+	@Override
+	public void init() {
+		this.xOffset = 0f;
+		this.yOffset = ((float) (contentManager.getScreen_height() - bground.getHeight() - 20)) / Editor.FIELD_SIZE + 1f;
+		this.currentTimes = contentManager.getCurrentTimes();
+		this.currentImage = contentManager.getCurrentImage();
+
+		createElements();
+		setupPositions();
+		createFunctionalities();
+		addToRoot();
+	}
+
+	private void setupPositions() {
+
+		int xPos = (int) ((getPos().x + xOffset) * Editor.FIELD_SIZE) + 200;
+		int yPos = (int) ((getPos().y + yOffset) * Editor.FIELD_SIZE) + 105;
+
+		this.imageX_input.setLayoutX(xPos);
+		this.imageX_input.setLayoutY(yPos);
+
+		yPos += 60;
+
+		this.imageY_input.setLayoutX(xPos);
+		this.imageY_input.setLayoutY(yPos);
+
+		yPos += 60;
+
+		this.getDuration_input().setLayoutX(xPos);
+		this.getDuration_input().setLayoutY(yPos);
+	}
+
+	private void createElements() {
+		this.setDuration_input(new TextField());
+		this.getDuration_input().setText("0");
+		this.imageX_input = new TextField();
+		this.imageX_input.setText("0");
+		this.imageY_input = new TextField();
+		this.imageY_input.setText("0");
+
+		this.getDuration_input().setMaxWidth(75);
+		this.imageX_input.setMaxWidth(75);
+		this.imageY_input.setMaxWidth(75);
+	}
+
+	private void createFunctionalities() {
+		this.getDuration_input().textProperty().addListener((observable, oldValue, newValue) -> {
+			try {
+				if (!termsFulfilledForDuration(newValue))
+					return;
+				contentManager.setCurrentDuration(Float.parseFloat(newValue));
+				contentManager.console.println("Duration changed from " + oldValue + " to " + newValue);
+				 
+			} catch (NumberFormatException e) {
+				contentManager.console.println("Check your Input. Invalid Float Number");
+			}
+			catch (IllegalArgumentException e) {
+				contentManager.console.println("Check your Input. Invalid Float Number");
+			}
+			if (!currentTimes.isEmpty()){
+				currentTimes.set(contentManager.getCurrentIndex(), ((float) contentManager.getCurrentDuration()));
+			}	
+			contentManager.updateImportant();
+		});
+
+		this.imageX_input.textProperty().addListener((observable, oldValue, newValue) -> {
+
+			try {
+
+				if (!termsFulfilledForXPos(newValue))
+					return;
+
+				currentImage.setXPos(Float.parseFloat(newValue));
+				contentManager.console.println("X-Pos changed from " + oldValue + " to " + newValue);
+
+			} catch (NumberFormatException e) {
+				contentManager.console.println("Check your Input. Invalid Float Number");
+			} catch (NullPointerException e) {
+				contentManager.console.println("No Image found");
+			}
+
+			contentManager.updateImportant();
+		});
+
+		this.imageY_input.textProperty().addListener((observable, oldValue, newValue) -> {
+
+			try {
+				if (!termsFulfilledForYPos(newValue))
+					return;
+
+				currentImage.setYPos(Float.parseFloat(newValue));
+				contentManager.console.println("Y-Pos changed from " + oldValue + " to " + newValue);
+
+			} catch (NumberFormatException e) {
+				contentManager.console.println("Check your Input. Invalid Float Number");
+			} catch (NullPointerException e) {
+				contentManager.console.println("No Image found");
+			}
+			contentManager.updateImportant();
+		});
+
+	}
+
+	private boolean termsFulfilledForDuration(String newValue) {
+
+		boolean tooSmall = (Float.parseFloat(newValue) < Other.PERMITTED_MIN_VALUE_DURATION);
+		if (tooSmall) {
+			
+			contentManager.setCurrentDuration(Other.PERMITTED_MIN_VALUE_DURATION);
+			if (!currentTimes.isEmpty())
+				currentTimes.set(contentManager.getCurrentIndex(), ((float) contentManager.getCurrentDuration()));
+			return false;
+		}
+
+		boolean tooBig = (Float.parseFloat(newValue) > Other.PERMITTED_MAX_VALUE_DURATION);
+		if (tooBig) {
+	
+			contentManager.setCurrentDuration(Other.PERMITTED_MAX_VALUE_DURATION);
+			if (!currentTimes.isEmpty())
+				currentTimes.set(contentManager.getCurrentIndex(), ((float) contentManager.getCurrentDuration()));
+			return false;
+		}
+
+		return true;
+	}
+
+	private boolean termsFulfilledForXPos(String newValue) {
+
+		boolean tooSmall = (Float.parseFloat(newValue) < Other.PERMITTED_MIN_VALUE_XPOS);
+		if (tooSmall) {
+			currentImage.setXPos(Other.PERMITTED_MIN_VALUE_XPOS);
+			return false;
+		}
+
+		boolean tooBig = (Float.parseFloat(newValue) > Other.PERMITTED_MAX_VALUE_XPOS);
+		if (tooBig) {
+			currentImage.setXPos(Other.PERMITTED_MAX_VALUE_XPOS);
+			return false;
+		}
+		return true;
+	}
+
+	private boolean termsFulfilledForYPos(String newValue) {
+
+		boolean tooSmall = (Float.parseFloat(newValue) < Other.PERMITTED_MIN_VALUE_YPOS);
+		if (tooSmall) {
+			currentImage.setYPos(Other.PERMITTED_MIN_VALUE_YPOS);
+			return false;
+		}
+
+		boolean tooBig = (Float.parseFloat(newValue) > Other.PERMITTED_MAX_VALUE_YPOS);
+		if (tooBig) {
+			currentImage.setYPos(Other.PERMITTED_MAX_VALUE_YPOS);
+			return false;
+		}
+		return true;
+	}
+
+	private void addToRoot() {
+		root.getChildren().addAll(getDuration_input(), imageX_input, imageY_input);
+	}
+
+	public TextField getImageX_input() {
+		return imageX_input;
+	}
+
+	public TextField getImageY_input() {
+		return imageY_input;
+	}
+
+	public TextField getDuration_input() {
+		return duration_input;
+	}
+
+	public void setDuration_input(TextField duration_input) {
+		this.duration_input = duration_input;
+	}
+
+	@Override
+	public void disableObjects(boolean disable) {
+		this.getDuration_input().setDisable(disable);
+		this.imageX_input.setDisable(disable);
+		this.imageY_input.setDisable(disable);
+		
+	}
+
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+	<type>Natsu3</type>
+	<sprites>
+		<jumpRecover airBool="false" airIndex="0" loopIndex="0" loops="false">
+			<img duration="100" key="0">/images/IMG_Natsu_Jump_Recover_1.png</img>
+		</jumpRecover>
+		<airDefend airBool="false" airIndex="0" loopIndex="0" loops="false">
+			<img duration="100" key="0">/images/IMG_Natsu_Air_Defend_1.png</img>
+		</airDefend>
+		<airSpecialAttack1 airBool="false" airIndex="0" loopIndex="0" loops="false">
+			<img duration="100" key="0">/images/IMG_Natsu_Air_Defend_1.png</img>
+		</airSpecialAttack1>
+	</sprites>
+</character>
