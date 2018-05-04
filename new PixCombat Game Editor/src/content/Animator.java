@@ -3,6 +3,8 @@ package content;
 import java.util.ArrayList;
 import java.util.List;
 
+import exceptions.AnimatorNoContentException;
+
 public class Animator implements Runnable {
 
 	private ArrayList<AnimFrame> frames;
@@ -37,9 +39,13 @@ public class Animator implements Runnable {
 	}
 	
 
-	public synchronized void setup(List<LocatedImage> currentImages, List<Float> currentTimes)
+	public synchronized void setup(List<LocatedImage> currentImages, List<Float> currentTimes) throws AnimatorNoContentException
 	{
-		System.out.println("setup wurde aufgerufen");
+		if(currentImages.isEmpty() || currentTimes.isEmpty())
+			throw new AnimatorNoContentException(currentImages, currentTimes);
+		
+		
+		mainContent.console.println("setup wurde aufgerufen");
 		if(frames!= null)	frames = new ArrayList<AnimFrame>();
 		else 				frames.clear();
 		totalDuration = 0f;
@@ -50,7 +56,7 @@ public class Animator implements Runnable {
 		mainContent.setCurrentImage(getImage());
 		mainContent.repaint();
 		
-		System.out.println(frames.size() + "-Bilder geladen");
+		mainContent.console.println(frames.size() + "-Bilder geladen");
 		
 	}
 	

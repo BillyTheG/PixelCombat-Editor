@@ -25,7 +25,7 @@ public class XML_Image_Reader implements ContentHandler {
 	private Map<String, Boolean> loopBools = new HashMap<String, Boolean>();
 	private Map<String, Integer> loopIndices = new HashMap<String, Integer>();
 	
-	//Times between Images
+	//Times between Images	
 	private Map<String, ArrayList<Float>> times = new HashMap<String, ArrayList<Float>>();
 	private ArrayList<Float> time = new ArrayList<Float>();
 	
@@ -168,10 +168,10 @@ public class XML_Image_Reader implements ContentHandler {
 	public LocatedImage loadImage(String url) {
 		try {
 			LocatedImage img = new LocatedImage(url);
-			System.out.println("picture found");
+			mainContent.console.println("picture found");
 			return img;
 		} catch (Exception e) {
-			System.out.println("no picture found");
+			mainContent.console.println("no picture found");
 			return null;
 		}
 	}

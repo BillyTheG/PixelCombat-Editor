@@ -5,6 +5,7 @@ import java.util.Collections;
 import content.LocatedImage;
 import content.MainContent;
 import content.misc.Other;
+import exceptions.AnimatorNoContentException;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -229,15 +230,21 @@ public class EditAnimation extends MenuObject {
 				playAnimation.setOnAction(new EventHandler<ActionEvent>() {
 					@Override
 					public void handle(ActionEvent event) {
-						contentManager.disableObjects(true);
-						contentManager.getAnimator().setup(contentManager.getCurrentImages(), contentManager.getCurrentTimes());
-						contentManager.getAnimator().setRunning(true);
-						contentManager.setAnimatorExecuter(new Thread(contentManager.getAnimator()));
-						contentManager.getAnimatorExecuter().setDaemon(true);
-						contentManager.getAnimatorExecuter().start();
-						playAnimation.setDisable(true);
-						stopAnimation.setDisable(false);
-					
+						
+						try {
+							contentManager.disableObjects(true);
+							contentManager.getAnimator().setup(contentManager.getCurrentImages(), contentManager.getCurrentTimes());
+							contentManager.getAnimator().setRunning(true);
+							contentManager.setAnimatorExecuter(new Thread(contentManager.getAnimator()));
+							contentManager.getAnimatorExecuter().setDaemon(true);
+							contentManager.getAnimatorExecuter().start();
+							playAnimation.setDisable(true);
+							stopAnimation.setDisable(false);
+						
+						} catch (AnimatorNoContentException | IndexOutOfBoundsException e) {
+							contentManager.console.println(""+e.getMessage());
+						}
+						
 					}
 				});
 		

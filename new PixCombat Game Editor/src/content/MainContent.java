@@ -259,6 +259,10 @@ public class MainContent extends ContentManager {
 	}
 
 	public void drawBoxes() {
+		
+		if(animator.isRunning())
+			return;
+		
 		for (int i = 0; i < getCurrentBox().get(getCurrentIndex()).size(); i++)
 			getCurrentBox().get(getCurrentIndex()).get(i).draw(graphicsContext);
 	}
