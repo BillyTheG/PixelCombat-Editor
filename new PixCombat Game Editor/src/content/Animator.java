@@ -15,7 +15,7 @@ public class Animator implements Runnable {
 	public 	static float ANIMATION_DIVISOR = 2000f;
 	private long deltaTime = 0;
 	private long previousTime = 0;
-	private boolean isRunning = true;
+	private boolean isRunning = false;
 	private volatile MainContent mainContent;
 	private int 	FPS = 60;
 	private float 	frameBuffer = 0f;	

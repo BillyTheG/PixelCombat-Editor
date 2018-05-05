@@ -5,11 +5,17 @@ import java.util.List;
 import content.LocatedImage;
 import content.MainContent;
 import content.misc.Other;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
 import main.Editor;
+import math.NumberUtils;
 import math.Vector2d;
 
 public class EditImage extends MenuObject {
@@ -24,7 +30,10 @@ public class EditImage extends MenuObject {
 	private TextField imageY_input;
 	private LocatedImage currentImage = null;
 
-	
+	private static final ImageView RESET_HOVERED = new ImageView(Other.BUTTONICON_RESET_HOVERED);
+	private static final ImageView RESET_UNHOVERED = new ImageView(Other.BUTTONICON_RESET);
+
+	private Button reset;
 
 	public EditImage(Vector2d pos, Group root, MainContent contentManager) {
 		super(pos, root, contentManager);
@@ -42,19 +51,19 @@ public class EditImage extends MenuObject {
 
 		this.currentImage = contentManager.getCurrentImage();
 		this.currentTimes = contentManager.getCurrentTimes();
-		
+
 		if (currentImage != null) {
-			this.imageX_input.setText("" + currentImage.getOffsetPos().x);
-			this.imageY_input.setText("" + currentImage.getOffsetPos().y);
+			this.imageX_input.setText("" + NumberUtils.round(currentImage.getOffsetPos().x, 2));
+			this.imageY_input.setText("" + NumberUtils.round(currentImage.getOffsetPos().y, 2));
 		}
 
 		if (currentTimes != null) {
 			try {
 				contentManager.setCurrentDuration(currentTimes.get(contentManager.getCurrentIndex()));
-				if(!(""+currentTimes.get(contentManager.getCurrentIndex())).equals(getDuration_input().getText().toString()))
-				getDuration_input().setText("" + currentTimes.get(contentManager.getCurrentIndex()));
+				if (!("" + currentTimes.get(contentManager.getCurrentIndex())).equals(getDuration_input().getText().toString()))
+					getDuration_input().setText("" + NumberUtils.round(currentTimes.get(contentManager.getCurrentIndex()),2));
 			} catch (IndexOutOfBoundsException e) {
-				
+
 			}
 		}
 	}
@@ -89,6 +98,12 @@ public class EditImage extends MenuObject {
 
 		this.getDuration_input().setLayoutX(xPos);
 		this.getDuration_input().setLayoutY(yPos);
+
+		xPos = (int) ((getPos().x + xOffset) * Editor.FIELD_SIZE) + 200 + 50;
+		yPos = (int) ((getPos().y + yOffset) * Editor.FIELD_SIZE) + 15;
+
+		reset.setLayoutX(xPos);
+		reset.setLayoutY(yPos);
 	}
 
 	private void createElements() {
@@ -102,39 +117,54 @@ public class EditImage extends MenuObject {
 		this.getDuration_input().setMaxWidth(75);
 		this.imageX_input.setMaxWidth(75);
 		this.imageY_input.setMaxWidth(75);
+
+		reset = new Button("", RESET_UNHOVERED);
+		reset.setBackground(Background.EMPTY);
+		reset.setOnMouseEntered(e -> reset.setGraphic(RESET_HOVERED));
+		reset.setOnMouseExited(e -> reset.setGraphic(RESET_UNHOVERED));
+
 	}
 
 	private void createFunctionalities() {
+
+		reset.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				if (currentImage == null)
+					return;
+				imageX_input.setText("" + 0);
+				imageY_input.setText("" + 0);
+			}
+		});
+
 		this.getDuration_input().textProperty().addListener((observable, oldValue, newValue) -> {
 			try {
 				if (!termsFulfilledForDuration(newValue))
 					return;
 				contentManager.setCurrentDuration(Float.parseFloat(newValue));
 				contentManager.console.println("Duration changed from " + oldValue + " to " + newValue);
-				 
+
 			} catch (NumberFormatException e) {
 				contentManager.console.println("Check your Input. Invalid Float Number");
-			}
-			catch (IllegalArgumentException e) {
+			} catch (IllegalArgumentException e) {
 				contentManager.console.println("Check your Input. Invalid Float Number");
 			}
-			if (!currentTimes.isEmpty()){
+			if (!currentTimes.isEmpty()) {
 				currentTimes.set(contentManager.getCurrentIndex(), ((float) contentManager.getCurrentDuration()));
-			}	
+			}
 			contentManager.updateImportant();
 		});
 
 		this.imageX_input.textProperty().addListener((observable, oldValue, newValue) -> {
 
 			try {
-
 				if (!termsFulfilledForXPos(newValue))
 					return;
 
 				currentImage.setXPos(Float.parseFloat(newValue));
 				contentManager.console.println("X-Pos changed from " + oldValue + " to " + newValue);
 
-			} catch (NumberFormatException e) {
+			} catch (IllegalArgumentException e) {
 				contentManager.console.println("Check your Input. Invalid Float Number");
 			} catch (NullPointerException e) {
 				contentManager.console.println("No Image found");
@@ -151,8 +181,7 @@ public class EditImage extends MenuObject {
 
 				currentImage.setYPos(Float.parseFloat(newValue));
 				contentManager.console.println("Y-Pos changed from " + oldValue + " to " + newValue);
-
-			} catch (NumberFormatException e) {
+			} catch (IllegalArgumentException e) {
 				contentManager.console.println("Check your Input. Invalid Float Number");
 			} catch (NullPointerException e) {
 				contentManager.console.println("No Image found");
@@ -166,7 +195,7 @@ public class EditImage extends MenuObject {
 
 		boolean tooSmall = (Float.parseFloat(newValue) < Other.PERMITTED_MIN_VALUE_DURATION);
 		if (tooSmall) {
-			
+
 			contentManager.setCurrentDuration(Other.PERMITTED_MIN_VALUE_DURATION);
 			if (!currentTimes.isEmpty())
 				currentTimes.set(contentManager.getCurrentIndex(), ((float) contentManager.getCurrentDuration()));
@@ -175,7 +204,7 @@ public class EditImage extends MenuObject {
 
 		boolean tooBig = (Float.parseFloat(newValue) > Other.PERMITTED_MAX_VALUE_DURATION);
 		if (tooBig) {
-	
+
 			contentManager.setCurrentDuration(Other.PERMITTED_MAX_VALUE_DURATION);
 			if (!currentTimes.isEmpty())
 				currentTimes.set(contentManager.getCurrentIndex(), ((float) contentManager.getCurrentDuration()));
@@ -218,7 +247,7 @@ public class EditImage extends MenuObject {
 	}
 
 	private void addToRoot() {
-		root.getChildren().addAll(getDuration_input(), imageX_input, imageY_input);
+		root.getChildren().addAll(getDuration_input(), imageX_input, imageY_input, reset);
 	}
 
 	public TextField getImageX_input() {
@@ -242,7 +271,7 @@ public class EditImage extends MenuObject {
 		this.getDuration_input().setDisable(disable);
 		this.imageX_input.setDisable(disable);
 		this.imageY_input.setDisable(disable);
-		
+		this.reset.setDisable(disable);
 	}
 
 }

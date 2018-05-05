@@ -4,19 +4,29 @@ import content.MainContent;
 import content.misc.Other;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
 import main.Editor;
 import math.BoundingRectangle;
+import math.NumberUtils;
 import math.Vector2d;
 
 public class EditBox extends MenuObject {
 
-	public static final Image bground = Other.loadImage("/images/menu/IMG_MenuBox_EditBox.png");
+	public  static final 	Image bground = Other.loadImage("/images/menu/IMG_MenuBox_EditBox.png");
+	private static final 	ImageView RESET_HOVERED = new ImageView(Other.BUTTONICON_RESET_HOVERED);
+	private static final 	ImageView RESET_UNHOVERED = new ImageView(Other.BUTTONICON_RESET);
 
+	private Button reset;
+	
 	private TextField x_input;
 
 	private TextField y_input;
@@ -50,10 +60,10 @@ public class EditBox extends MenuObject {
 		this.currentBox = contentManager.getCurrPointer();
 
 		if (currentBox != null) {
-			this.x_input.setText("" + currentBox.getPos().x);
-			this.y_input.setText("" + currentBox.getPos().y);
-			this.width_input.setText("" + currentBox.getWidth());
-			this.height_input.setText("" + currentBox.getHeight());
+			this.x_input.setText("" + NumberUtils.round(currentBox.getPos().x, 2));
+			this.y_input.setText("" + NumberUtils.round(currentBox.getPos().y, 2));
+			this.width_input.setText("" + NumberUtils.round(currentBox.getWidth(), 2));
+			this.height_input.setText("" + NumberUtils.round(currentBox.getHeight(), 2));
 			this.hits.setValue("" + currentBox.getHurts());
 		}
 
@@ -96,6 +106,11 @@ public class EditBox extends MenuObject {
 		this.width_input.setMaxWidth(75);
 		this.height_input.setMaxWidth(75);
 		this.hits.setMaxWidth(75);
+		
+		reset = new Button("", RESET_UNHOVERED);
+		reset.setBackground(Background.EMPTY);
+		reset.setOnMouseEntered(e -> reset.setGraphic(RESET_HOVERED));
+		reset.setOnMouseExited(e -> reset.setGraphic(RESET_UNHOVERED));
 
 	}
 
@@ -127,11 +142,31 @@ public class EditBox extends MenuObject {
 
 		this.height_input.setLayoutX(xPos);
 		this.height_input.setLayoutY(yPos);
+		
+		xPos = (int) ((getPos().x + xOffset) * Editor.FIELD_SIZE) + 200 + 25;
+		yPos = (int) ((getPos().y + yOffset) * Editor.FIELD_SIZE) + 15;
+
+		reset.setLayoutX(xPos);
+		reset.setLayoutY(yPos);
 
 	}
 
 	private void setUpFunctionalities() {
 
+		reset.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				if (currentBox == null)
+					return;
+				x_input.setText("" + MainContent.CENTER.x);
+				y_input.setText("" + MainContent.CENTER.y);
+				width_input.setText("" + 1);
+				height_input.setText("" + 1);
+				contentManager.setCurrPointer(null);
+				contentManager.updateImportant();
+			}
+		});
+		
 		this.x_input.textProperty().addListener((observable, oldValue, newValue) -> {
 
 			if (currentBox == null || oldValue.equals(newValue))
@@ -199,7 +234,7 @@ public class EditBox extends MenuObject {
 	}
 
 	private void addToRoot() {
-		root.getChildren().addAll(x_input, y_input, width_input, height_input, hits);
+		root.getChildren().addAll(x_input, y_input, width_input, height_input, hits,reset);
 	}
 
 	private boolean getBooleanVal(String value) {
@@ -216,6 +251,7 @@ public class EditBox extends MenuObject {
 		this.width_input.setDisable(disable);
 		this.height_input.setDisable(disable);
 		this.hits.setDisable(disable);
+		this.reset.setDisable(disable);
 		
 	}
 

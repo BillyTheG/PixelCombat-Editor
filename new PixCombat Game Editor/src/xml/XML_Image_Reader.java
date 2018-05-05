@@ -15,6 +15,7 @@ import content.MainContent;
 
 
 public class XML_Image_Reader implements ContentHandler {
+	
 	// Zwischenspeicher fuer Inhalt von Elementen
 	String ElementContent = null;
 	
@@ -54,7 +55,6 @@ public class XML_Image_Reader implements ContentHandler {
 
 		
 	}
-
 
 	public void setDocumentLocator(Locator locator) {
 	}

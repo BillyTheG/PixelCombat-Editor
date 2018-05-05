@@ -27,7 +27,6 @@ public class Console extends BorderPane {
         textArea.setMinSize(screen_width-20, screen_height-90);
         textArea.setStyle(""
                 + "-fx-font-size: 14px;"
-                + "-fx-font-style: consolas;"
                 + "-fx-font-weight: bold;"
                 + "-fx-font-family: consolas;"
                 + "-fx-text-fill: white;"

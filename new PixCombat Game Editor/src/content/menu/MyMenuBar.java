@@ -25,40 +25,28 @@ public class MyMenuBar extends MenuObject {
 
 	private static final Image bground = Other.loadImage("/images/menu/IMG_MenuBox_Menu.png");
 
-	private static final ImageView HELP_UNHOVERED = new ImageView(
-			Other.loadImage("/images/menu/IMG_MenuPoint_Help_Unhovered.png"));
+	private static final ImageView HELP_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPoint_Help_Unhovered.png"));
 
-	private static final ImageView TOGGLEFULLSCREEN_HOVERED = new ImageView(
-			Other.loadImage("/images/menu/IMG_MenuPointSelection_ToggleFullscreen_Unhovered.png"));
+	private static final ImageView TOGGLEFULLSCREEN_HOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPointSelection_ToggleFullscreen_Unhovered.png"));
+	private static final ImageView TOGGLECONSOLE_HOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPointSelection_ToggleConsole_Unhovered.png"));
+
 	
-	private static final ImageView HELPITEM_HOVERED = new ImageView(
-			Other.loadImage("/images/menu/IMG_MenuPointSelection_ToggleFullscreen_Unhovered.png"));
+	private static final ImageView HELPITEM_HOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPointSelection_ToggleFullscreen_Unhovered.png"));
+
+	private static final ImageView OPTIONS_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPoint_Options_Unhovered.png"));
 	
-	private static final ImageView OPTIONS_UNHOVERED = new ImageView(
-			Other.loadImage("/images/menu/IMG_MenuPoint_Options_Unhovered.png"));
+	private static final ImageView LOADPROJECTILE_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPointSelection_LoadSpecialEffect_Unhovered.png"));
+	private static final ImageView LOADBOXES_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPointSelection_LoadBoxes_Unhovered.png"));
+	private static final ImageView LOADFILE_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPoint_LoadFile_Unhovered.png"));
 
-	private static final ImageView LOADPROJECTILE_UNHOVERED = new ImageView(
-			Other.loadImage("/images/menu/IMG_MenuPointSelection_LoadSpecialEffect_Unhovered.png"));
-	private static final ImageView LOADBOXES_UNHOVERED = new ImageView(
-			Other.loadImage("/images/menu/IMG_MenuPointSelection_LoadBoxes_Unhovered.png"));
-	private static final ImageView LOADFILE_UNHOVERED = new ImageView(
-			Other.loadImage("/images/menu/IMG_MenuPoint_LoadFile_Unhovered.png"));
+	private static final ImageView SAVEPROJECTILE_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPointSelection_SaveProjectile_Unhovered.png"));
+	private static final ImageView SAVECHARACTER_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPointSelection_SaveCharacter_Unhovered.png"));
+	private static final ImageView SAVEFILE_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPoint_SaveFile_Unhovered.png"));
 
-	private static final ImageView SAVEPROJECTILE_UNHOVERED = new ImageView(
-			Other.loadImage("/images/menu/IMG_MenuPointSelection_SaveProjectile_Unhovered.png"));
-	private static final ImageView SAVECHARACTER_UNHOVERED = new ImageView(
-			Other.loadImage("/images/menu/IMG_MenuPointSelection_SaveCharacter_Unhovered.png"));
-	private static final ImageView SAVEFILE_UNHOVERED = new ImageView(
-			Other.loadImage("/images/menu/IMG_MenuPoint_SaveFile_Unhovered.png"));
-
-	private static final ImageView NEWSPECIALEFFECT_UNHOVERED = new ImageView(
-			Other.loadImage("/images/menu/IMG_MenuPointSelection_NewSpecialEffect_Unhovered.png"));
-	private static final ImageView NEWPROJECTILE_UNHOVERED = new ImageView(
-			Other.loadImage("/images/menu/IMG_MenuPointSelection_NewProjectile_Unhovered.png"));
-	private static final ImageView NEWCHARACTER_UNHOVERED = new ImageView(
-			Other.loadImage("/images/menu/IMG_MenuPointSelection_NewCharacter_Unhovered.png"));
-	private static final ImageView MAKEFILE_UNHOVERED = new ImageView(
-			Other.loadImage("/images/menu/IMG_MenuPoint_MakeFile_Unhovered.png"));
+	private static final ImageView NEWSPECIALEFFECT_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPointSelection_NewSpecialEffect_Unhovered.png"));
+	private static final ImageView NEWPROJECTILE_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPointSelection_NewProjectile_Unhovered.png"));
+	private static final ImageView NEWCHARACTER_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPointSelection_NewCharacter_Unhovered.png"));
+	private static final ImageView MAKEFILE_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPoint_MakeFile_Unhovered.png"));
 
 	// Menu
 	private MenuBar menuBar;
@@ -78,6 +66,7 @@ public class MyMenuBar extends MenuObject {
 
 	private Menu options;
 	private MenuItem options_fullscreen;
+	private MenuItem options_console;
 
 	private Menu help;
 	private MenuItem menuHELP;
@@ -85,10 +74,9 @@ public class MyMenuBar extends MenuObject {
 	private float xOffset = 3.5f;
 	private float yOffset = 0f;
 
-
 	public MyMenuBar(Vector2d pos, Group root, MainContent contentManager) {
-		super(pos, root,contentManager);
-		
+		super(pos, root, contentManager);
+
 	}
 
 	@Override
@@ -117,7 +105,7 @@ public class MyMenuBar extends MenuObject {
 		makeFile.getItems().addAll(newCharacter, newProjectile, newSpecialEffect);
 		saveFile.getItems().addAll(saveCharacter, saveProjectile);
 		loadFile.getItems().addAll(loadBoxes, loadSpecialEffect);
-		options.getItems().addAll(options_fullscreen);
+		options.getItems().addAll(options_fullscreen,options_console);
 		help.getItems().addAll(menuHELP);
 		menuBar.getMenus().addAll(makeFile, saveFile, loadFile, options, help);
 		root.getChildren().add(menuBar);
@@ -128,25 +116,25 @@ public class MyMenuBar extends MenuObject {
 		this.newProjectile.setDisable(disable);
 		this.newCharacter.setDisable(disable);
 		this.newSpecialEffect.setDisable(disable);
-		
+
 		this.saveCharacter.setDisable(disable);
 		this.saveProjectile.setDisable(disable);
-		
+
 		this.options_fullscreen.setDisable(disable);
-		
+		this.options_console.setDisable(disable);
+
 		this.menuHELP.setDisable(disable);
-		
+
 		this.makeFile.setDisable(disable);
 		this.saveFile.setDisable(disable);
 		this.loadFile.setDisable(disable);
 		this.options.setDisable(disable);
 		this.help.setDisable(disable);
-		
+
 		this.menuBar.setDisable(disable);
-		
+
 	}
 
-	
 	private void setPositions() {
 		menuBar.setLayoutX((getPos().x + xOffset) * Editor.FIELD_SIZE + 320);
 		menuBar.setLayoutY((getPos().y + yOffset) * Editor.FIELD_SIZE + 10);
@@ -172,6 +160,7 @@ public class MyMenuBar extends MenuObject {
 
 		options = new Menu("", OPTIONS_UNHOVERED);
 		options_fullscreen = new MenuItem("", TOGGLEFULLSCREEN_HOVERED);
+		options_console	   = new MenuItem("", TOGGLECONSOLE_HOVERED);
 
 		help = new Menu("", HELP_UNHOVERED);
 		menuHELP = new MenuItem("", HELPITEM_HOVERED);
@@ -198,10 +187,8 @@ public class MyMenuBar extends MenuObject {
 			@Override
 			public void handle(final ActionEvent e) {
 				if (contentManager.getSelectedFile() != null) {
-					contentManager.getXml_box_writer().createXML_Box(contentManager.getCurrentCharName(),
-							contentManager.getBoxes());
-					contentManager.getXml_image_writer().setVariables(contentManager.getImages(),
-							contentManager.getLoopBools(), contentManager.getLoopIndices(), contentManager.getTimes());
+					contentManager.getXml_box_writer().createXML_Box(contentManager.getCurrentCharName(), contentManager.getBoxes());
+					contentManager.getXml_image_writer().setVariables(contentManager.getImages(), contentManager.getLoopBools(), contentManager.getLoopIndices(), contentManager.getTimes());
 					try {
 						contentManager.getXml_image_writer().createXML_Image(contentManager.getCurrentCharName());
 					} catch (SizeNotEqualException e1) {
@@ -227,8 +214,7 @@ public class MyMenuBar extends MenuObject {
 
 			}
 
-			private Map<String, ArrayList<ArrayList<BoundingRectangle>>> calibrate(
-					Map<String, ArrayList<ArrayList<BoundingRectangle>>> loadBox) {
+			private Map<String, ArrayList<ArrayList<BoundingRectangle>>> calibrate(Map<String, ArrayList<ArrayList<BoundingRectangle>>> loadBox) {
 
 				for (Map.Entry<String, ArrayList<ArrayList<BoundingRectangle>>> entry : loadBox.entrySet()) {
 
@@ -251,23 +237,31 @@ public class MyMenuBar extends MenuObject {
 			}
 		});
 
-//		menuHELP.setOnAction(new EventHandler<ActionEvent>() {
-//
-//			@Override
-//			public void handle(final ActionEvent e) {
-//				if (contentManager.getSc().getValue() == contentManager.getSc().getMax())
-//					contentManager.getSc().setValue(contentManager.getSc().getMin());
-//				else
-//					contentManager.getSc().increment();
-//			}
-//
-//		});
+		// menuHELP.setOnAction(new EventHandler<ActionEvent>() {
+		//
+		// @Override
+		// public void handle(final ActionEvent e) {
+		// if (contentManager.getSc().getValue() == contentManager.getSc().getMax())
+		// contentManager.getSc().setValue(contentManager.getSc().getMin());
+		// else
+		// contentManager.getSc().increment();
+		// }
+		//
+		// });
 
 		options_fullscreen.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(final ActionEvent e) {
 				boolean fullscreen = contentManager.getMainStage().isFullScreen();
 				contentManager.getMainStage().setFullScreen(!fullscreen);
+			}
+		});
+		
+		options_console.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(final ActionEvent e) {
+				if(!contentManager.getConsoleStage().isShowing())
+						contentManager.getConsoleStage().show();
 			}
 		});
 

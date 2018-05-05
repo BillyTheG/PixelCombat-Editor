@@ -47,6 +47,7 @@ public class MainContent extends ContentManager {
 	private BoundingRectangle currPointer = null;
 	public BoundingRectangle copiedPointer = null;
 	private Stage mainStage;
+	private Stage consoleStage;
 	private final FileChooser fileChooser = new FileChooser();
 	private File selectedFile = null;
 	private XMLContent xmlReader;
@@ -108,8 +109,9 @@ public class MainContent extends ContentManager {
 	public static int screen_height;
 
 	// Conctructor
-	public MainContent(Group root, Canvas canvas, Console console, Stage mainStage, int width, int height) {
+	public MainContent(Group root, Canvas canvas, Console console, Stage mainStage, Stage consoleStage, int width, int height) {
 		super(root, canvas, console);
+		this.setConsoleStage(consoleStage);
 		MainContent.screen_height = height;
 		MainContent.screen_width = width;
 
@@ -455,6 +457,7 @@ public class MainContent extends ContentManager {
 
 		if (getCurrentIndex() >= getCurrentBox().size())
 			return;
+
 		for (int i = 0; i < getCurrentBox().get(getCurrentIndex()).size(); i++) {
 			getCurrentBox().get(getCurrentIndex()).get(i).unmark(root);
 		}
@@ -780,6 +783,20 @@ public class MainContent extends ContentManager {
 	 */
 	public void setDisableUpdate(boolean disableUpdate) {
 		this.disableUpdate = disableUpdate;
+	}
+
+	/**
+	 * @return the consoleStage
+	 */
+	public Stage getConsoleStage() {
+		return consoleStage;
+	}
+
+	/**
+	 * @param consoleStage the consoleStage to set
+	 */
+	public void setConsoleStage(Stage consoleStage) {
+		this.consoleStage = consoleStage;
 	}
 
 }

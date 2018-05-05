@@ -39,6 +39,12 @@ public class Other {
 	public static final Image BUTTONICON_MAGIC						= Other.loadImage("images/menu/IMG_Editor_Bonus_Pre_Magic.png");
 	public static final Image BUTTONICON_MAGIC_HOVERED				= Other.loadImage("images/menu/IMG_Editor_Bonus_Pre_Magic_Hovered.png");
 
+	public static final Image BUTTONICON_CLEAR						= Other.loadImage("images/menu/IMG_MenuButton_Clear_Unhovered.png");
+	public static final Image BUTTONICON_CLEAR_HOVERED	 			= Other.loadImage("images/menu/IMG_MenuButton_Clear_Hovered.png");
+	
+	public static final Image BUTTONICON_RESET						= Other.loadImage("images/menu/IMG_MenuButton_Reset_Unhovered.png");
+	public static final Image BUTTONICON_RESET_HOVERED				= Other.loadImage("images/menu/IMG_MenuButton_Reset_Hovered.png");
+
 	
 	public static final float PERMITTED_MIN_VALUE_DURATION 	= 0f;
 	public static final float PERMITTED_MAX_VALUE_DURATION 	= 9999f;

@@ -56,8 +56,8 @@ public class Editor extends Application {
 		this.consoleRoot 			= new Group();			
 		Canvas consoleCanvas 		= new Canvas();
 		this.consoleRoot.getChildren().add(consoleCanvas);			
-		this.consoleScene 			= new ConsoleScene(consoleRoot,consoleCanvas);			
-		this.console 				= new WordWrapConsole((int)consoleScene.getWidth(),(int) consoleScene.getHeight());
+		this.console 				= new WordWrapConsole((int)ConsoleScene.bground.getWidth(),(int) ConsoleScene.bground.getHeight());
+		this.consoleScene 			= new ConsoleScene(consoleRoot,console,consoleCanvas);			
 		this.console.println("Loading Elements");		
 		this.consoleRoot.getChildren().add(console);
 		
@@ -73,7 +73,7 @@ public class Editor extends Application {
 		this.mainStage 				= primaryStage;
 		this.mainRoot 				= new Group();
 		this.mainScene 				= new Scene(mainRoot, width, height);
-		this.mainContent 			= new MainContent(mainRoot, mainCanvas, console, mainStage, width, height);
+		this.mainContent 			= new MainContent(mainRoot, mainCanvas, console, mainStage,consoleStage, width, height);
 		this.mouseController 		= new MouseController(mainContent, console);
 		this.keyController 			= new KeyController(mainContent, console);
 		
