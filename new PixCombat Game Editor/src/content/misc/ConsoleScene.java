@@ -18,12 +18,8 @@ public class ConsoleScene extends Scene{
 	public  static final	Image 	  bground = Other.loadImage("/images/menu/IMG_MenuBox_Console.png");
 	private static final 	ImageView CLEAR_HOVERED = new ImageView(Other.BUTTONICON_CLEAR_HOVERED);
 	private static final 	ImageView CLEAR_UNHOVERED = new ImageView(Other.BUTTONICON_CLEAR);
-	
-	
 	public Button clear;
-	
-	
-	
+		
 	public ConsoleScene(Group root, Console console, Canvas canvas) {
 		super(root, bground.getWidth(), bground.getHeight());
 		this.root = root;
