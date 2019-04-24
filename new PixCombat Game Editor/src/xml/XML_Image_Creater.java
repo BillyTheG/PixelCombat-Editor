@@ -16,7 +16,6 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.Text;
 
 import content.AnimationEnum;
@@ -86,6 +85,7 @@ public class XML_Image_Creater {
 		Text typeChild = doc.createTextNode(character.substring(0,1).toUpperCase()+character.substring(1, character.length()));
 		type.appendChild(typeChild);
 
+		mainContent.console.println("Creating XML Document for " + typeChild.getTextContent());
 		//if we want to create an image xml, we have to consider the order of sequences
 		for (int i = 0; i< MainContent.MAX_SPRITE_TYPES; i++) {
 			
@@ -119,13 +119,20 @@ public class XML_Image_Creater {
 					for (int j = 0; j < currentImages.size(); j++) 
 					{
 						LocatedImage image 	= currentImages.get(j);
+						if(image == null) {
+							mainContent.console.println("The animation: "+currentPicSeq + " has a null element on position: "+j);
+							mainContent.console.println("The insertion of XML Elements will be skipped");
+							break;
+						}
 						int  duration		= ((int)currentTimes.get(j).floatValue());					
 						String location		= (image == null) ? "" : image.getURL();
 						
 						Element current_Image = doc.createElement("img");
 						current_Image.setAttribute("key", "" + j);
 						current_Image.setAttribute("duration", "" + duration);
-						current_Image.setTextContent(location);
+						current_Image.setAttribute("x", "" + image.getOffsetPos().x);
+						current_Image.setAttribute("y", "" + image.getOffsetPos().y);
+						current_Image.setTextContent(location.replace("\n", ""));
 						
 						currentPicSeq.appendChild(current_Image);
 					}
@@ -134,7 +141,8 @@ public class XML_Image_Creater {
 				}
 		}
 		}
-			
+		mainContent.console.println("XML Document has been created successfully");
+		mainContent.console.println("The XML File will be now created and saved");
 		try {
 			// write the content into xml file
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -155,14 +163,10 @@ public class XML_Image_Creater {
 		
 		//remove All
 		type.removeChild(typeChild);
-				
-		int size = sprites.getChildNodes().getLength();
 		
-		for(int i = 0; i< size; i++){
-			Node element = sprites.getChildNodes().item(i);
-			sprites.removeChild(element);
+		while(sprites.getFirstChild()!=null) {
+			sprites.removeChild(sprites.getFirstChild());
 		}
-		
 
 	}
 
