@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+	<type>Ruffy3</type>
+	<boxes>
+		<jetPistoling>
+			<box_list picture="0">
+				<box height="2.9400005" hurts="false" id="0" width="2.8400002"
+					x="-0.24000168" y="0.3000002" />
+			</box_list>
+			<box_list picture="1" />
+			<box_list picture="2" />
+			<box_list picture="3" />
+			<box_list picture="4" />
+			<box_list picture="5" />
+			<box_list picture="6" />
+			<box_list picture="7" />
+		</jetPistoling>
+	</boxes>
+</character>

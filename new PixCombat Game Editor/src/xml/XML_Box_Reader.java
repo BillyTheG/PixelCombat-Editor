@@ -28,6 +28,7 @@ public class XML_Box_Reader implements ContentHandler {
 	private boolean readingBoxList = false;
 	private boolean readingIMG = false;
 	private boolean readingAnimation = false;
+	private String  readingType = "";
 	private int picture = 0;
 	private int id = 0;
 	private float x = 0;
@@ -77,11 +78,11 @@ public class XML_Box_Reader implements ContentHandler {
 	}
 
 	public void startDocument() throws SAXException {
-		System.out.println("Starte Charakter parsen");
+		System.out.println("Initiating Parsing "+readingType+ " Box-Elements");
 	}
 
 	public void endDocument() throws SAXException {
-		System.out.println("Ende Charakter parsen");
+		System.out.println("Parsing of "+readingType+ " Box-Elements done");
 	}
 
 	public void startPrefixMapping(String prefix, String uri)
@@ -93,6 +94,11 @@ public class XML_Box_Reader implements ContentHandler {
 
 	public void startElement(String uri, String localName, String qName,
 			Attributes atts) throws SAXException {
+		if (localName.equals("type")){
+			readingType = ElementContent;
+		}
+		
+		
 		if (localName.equals("boxes") && readingAnimation == false) 
 		{
 			readingAnimation = true;
