@@ -402,6 +402,7 @@ public class MainContent extends ContentManager {
 
 	}
 
+	@SuppressWarnings("unlikely-arg-type")
 	public void clearAllData() {
 		// Clear Images
 		for (Map.Entry<String, ArrayList<LocatedImage>> entry : getImages().entrySet()) {
