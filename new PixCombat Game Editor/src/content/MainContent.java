@@ -28,6 +28,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import main.Editor;
@@ -42,7 +43,7 @@ public class MainContent extends ContentManager {
 	private GraphicsContext graphicsContext;
 	private Image backGround = Other.loadImage("/images/raster.png");
 	private Image cover = Other.loadImage("images/menu/IMG_Editor_Cover.png");
-	public static final int MAX_SPRITE_TYPES = 32;
+	public static final int MAX_SPRITE_TYPES = 33;
 
 	private BoundingRectangle currPointer = null;
 	public BoundingRectangle copiedPointer = null;
@@ -97,7 +98,7 @@ public class MainContent extends ContentManager {
 
 	// Misc
 	private ScrollBar sc = new ScrollBar();
-	public static Vector2d CENTER = new Vector2d(15f, 8f);
+	public static Vector2d CENTER = new Vector2d(15f, 11f);
 	private static final double PREVIOUS_IMAGE_OPACITY = 0.5;
 	private String currentCharName = "";
 	private IToolObject currentIToolBox = null;
@@ -208,6 +209,12 @@ public class MainContent extends ContentManager {
 			drawImage();
 		if (getCurrentBox() != null && getCurrentIndex() < getCurrentBox().size())
 			drawBoxes();
+		
+		graphicsContext.setFill(Color.YELLOW);
+		int x_pos_center = ((int)(CENTER.x*Editor.FIELD_SIZE))-5;
+		int y_pos_center = ((int)(CENTER.y*Editor.FIELD_SIZE))-5;
+		graphicsContext.fillRect(x_pos_center,y_pos_center, 10, 10);
+		graphicsContext.restore();
 	}
 
 	public void createMenu() {
@@ -283,7 +290,7 @@ public class MainContent extends ContentManager {
 			monochrome.setSaturation(-1);
 			graphicsContext.setGlobalAlpha(PREVIOUS_IMAGE_OPACITY);
 			graphicsContext.setEffect(monochrome);
-			graphicsContext.drawImage(getCurrentImages().get(currentIndex - 1), x, y - fixPic(getCurrentImages().get(currentIndex - 1)));
+			graphicsContext.drawImage(getCurrentImages().get(currentIndex - 1), x, y );
 			graphicsContext.setEffect(null);
 			graphicsContext.setGlobalAlpha(1);
 		}
@@ -291,7 +298,7 @@ public class MainContent extends ContentManager {
 		x = (getCurrentImage().getPos().x) * Editor.FIELD_SIZE - (float) getCurrentImage().getWidth() / 2f;
 		y = (getCurrentImage().getPos().y) * Editor.FIELD_SIZE - (float) getCurrentImage().getHeight() / 2f;
 
-		graphicsContext.drawImage(getCurrentImage(), x, y - fixPic(getCurrentImage()));
+		graphicsContext.drawImage(getCurrentImage(), x, y );
 		getCurrentImage().drawBorder(graphicsContext);
 	}
 
@@ -299,17 +306,7 @@ public class MainContent extends ContentManager {
 		this.drawPreviousImage = !drawPreviousImage;
 	}
 
-	public float fixPic(Image i) {
-		float halfHeight = (float) (i.getHeight() / 2);
-		float diff = 0f;
-		if (halfHeight >= 300f)
-			return 0f;
-		if (100 < halfHeight)
-			diff = halfHeight - 100;
-		if (100 > halfHeight)
-			diff = halfHeight - 100;
-		return diff;
-	}
+	
 
 	public void updateImages() {
 		setCurrentIndex(0);
@@ -402,7 +399,6 @@ public class MainContent extends ContentManager {
 
 	}
 
-	@SuppressWarnings("unlikely-arg-type")
 	public void clearAllData() {
 		// Clear Images
 		for (Map.Entry<String, ArrayList<LocatedImage>> entry : getImages().entrySet()) {

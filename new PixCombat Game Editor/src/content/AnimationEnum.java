@@ -33,7 +33,8 @@ public enum AnimationEnum
 	JUMPRECOVER(28,"jumpRecover"),
 	AIR_DEFENDING(29,"airDefend"),
 	AIR_SPECIALATTACK1(30,"airSpecialAttack1"),
-	KNOCKBACKRECOVER(31,"knockBackRecover");
+	KNOCKBACKRECOVER(31,"knockBackRecover"),
+	JUMPFALL(32,"jumpFall");
 	
 	private String name;
 	private int id;

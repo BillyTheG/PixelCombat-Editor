@@ -212,6 +212,7 @@ public class XML_Image_Creater {
 			
 			case "airSpecialAttack1": return AnimationEnum.AIR_SPECIALATTACK1;
 			case "knockBackRecover": return AnimationEnum.KNOCKBACKRECOVER;
+			case "jumpFall": return AnimationEnum.JUMPFALL;
 		}		
 		return null;
 	}

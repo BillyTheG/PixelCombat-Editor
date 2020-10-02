@@ -2,23 +2,14 @@
 <character>
 	<type>Ruffy</type>
 	<sprites>
-		<stand loopIndex="0" loops="true">
-			<img duration="350" key="0" x="-3.3400002" y="0.5">/images/IMG_Ruffy_Stand_1_re.png</img>
-			<img duration="350" key="1" x="0.0" y="0.0">/images/IMG_Ruffy_Stand_2_re.png</img>
-			<img duration="350" key="2" x="0.0" y="0.0">/images/IMG_Ruffy_Stand_3_re.png</img>
-			<img duration="350" key="3" x="0.0" y="0.0">/images/IMG_Ruffy_Stand_2_re.png</img>
-		</stand>
-		<move loopIndex="0" loops="true">
-			<img duration="350" key="0" x="0.0" y="0.0">/images/IMG_Ruffy_Move_1_re.png</img>
-			<img duration="200" key="1" x="0.0" y="0.0">/images/IMG_Ruffy_Move_2_re.png</img>
-			<img duration="200" key="2" x="0.0" y="0.0">/images/IMG_Ruffy_Move_3_re.png</img>
-			<img duration="200" key="3" x="0.0" y="0.0">/images/IMG_Ruffy_Move_4_re.png</img>
-			<img duration="200" key="4" x="0.0" y="0.0">/images/IMG_Ruffy_Move_5_re.png</img>
-			<img duration="200" key="5" x="0.0" y="0.0">/images/IMG_Ruffy_Move_6_re.png</img>
-			<img duration="200" key="6" x="0.0" y="0.0">/images/IMG_Ruffy_Move_7_re.png</img>
-			<img duration="200" key="7" x="0.0" y="0.0">/images/IMG_Ruffy_Move_8_re.png</img>
-		</move>
-		<jumping loopIndex="0" loops="true"/>
-		<basicAttack loopIndex="0" loops="false"/>
+		<jumping loopIndex="0" loops="true">
+			<img duration="100" key="0" x="0.1800003" y="-2.58">/images/ruffy_jump_1.png</img>
+			<img duration="100" key="1" x="0.20000076" y="-2.62">/images/ruffy_jump_2.png</img>
+		</jumping>
+		<jumpFall loopIndex="1" loops="true">
+			<img duration="100" key="0" x="0.20000076" y="-2.3199997">/images/ruffy_jump_3.png</img>
+			<img duration="30" key="1" x="0.059999466" y="-2.2600002">/images/ruffy_jump_4.png</img>
+			<img duration="30" key="2" x="0.059999466" y="-2.2600002">/images/ruffy_jump_5.png</img>
+		</jumpFall>
 	</sprites>
 </character>
