@@ -1,18 +1,16 @@
 package exceptions;
 
-import java.util.List;
+import enums.ExceptionGroup;
 
-import content.LocatedImage;
-
-public class AnimatorNoContentException extends Exception {
+public class AnimatorNoContentException extends PXEditorException {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	public AnimatorNoContentException(List<LocatedImage> images, List<Float> times){
-		super("Error in Image List either in Time List. \n Images List: " + images + "\n Times List: "+ times);
+	public AnimatorNoContentException(){
+		super("Animator cannot animate. ", ExceptionGroup.ANIMATION);
 	}
 	
 }

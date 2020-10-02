@@ -42,7 +42,7 @@ public class Animator implements Runnable {
 	public synchronized void setup(List<LocatedImage> currentImages, List<Float> currentTimes) throws AnimatorNoContentException
 	{
 		if(currentImages.isEmpty() || currentTimes.isEmpty())
-			throw new AnimatorNoContentException(currentImages, currentTimes);
+			throw new AnimatorNoContentException();
 		
 		
 		mainContent.console.println("setup wurde aufgerufen");

@@ -1,1 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><character><type>Ruffy</type><boxes><jumping><box_list picture="0"><box height="3.959999" hurts="false" id="0" width="1.1399994" x="0.09000015" y="-2.2399998"/></box_list><box_list picture="1"><box height="4.120001" hurts="false" id="0" width="1.1699982" x="0.14999962" y="-2.2799997"/></box_list></jumping><jumpFall><box_list picture="0"><box height="3.3199997" hurts="false" id="0" width="1.2599983" x="0.17000008" y="-2.1599998"/></box_list><box_list picture="1"><box height="3.3199997" hurts="false" id="0" width="1.2600021" x="0.059999466" y="-2.1999998"/></box_list><box_list picture="2"><box height="3.3199997" hurts="false" id="0" width="1.2600021" x="0.11999893" y="-2.12"/></box_list></jumpFall></boxes></character>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+	<type>Ruffy</type>
+	<boxes>
+		<jumping>
+			<box_list picture="0" />
+			<box_list picture="1" />
+		</jumping>
+		<jumpFall>
+			<box_list picture="0" />
+			<box_list picture="1" />
+			<box_list picture="2" />
+		</jumpFall>
+	</boxes>
+</character>

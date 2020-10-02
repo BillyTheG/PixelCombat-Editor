@@ -6,6 +6,7 @@ import java.util.Map;
 
 import content.MainContent;
 import content.misc.Other;
+import exceptions.ContentNullException;
 import exceptions.SizeNotEqualException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -170,14 +171,19 @@ public class MyMenuBar extends MenuObject {
 			public void handle(final ActionEvent e) {
 				File file = contentManager.getFileChooser().showOpenDialog(contentManager.getMainStage());
 				if (file != null) {
-					contentManager.clearAllData();
-					contentManager.clearComboBox();
-					contentManager.clearAll();
-					contentManager.getBoxes().clear();
-					int ch = file.getName().indexOf(".xml");
-					contentManager.setCurrentChar(file.getName().substring(0, ch));
-					contentManager.setFile(file);
-					contentManager.updateFile();
+					try { 
+						contentManager.clearAllData();
+						contentManager.clearComboBox();
+						contentManager.clearAll();
+						contentManager.getBoxes().clear();
+						int ch = file.getName().indexOf(".xml");
+						contentManager.setCurrentCharName(file.getName().substring(0, ch));
+						contentManager.setSelectedFile(file);
+						contentManager.updateFile();
+					}
+					catch(Exception e1){
+						contentManager.console.println(e1.getMessage());
+					}
 
 				}
 			}
@@ -187,12 +193,17 @@ public class MyMenuBar extends MenuObject {
 			@Override
 			public void handle(final ActionEvent e) {
 				if (contentManager.getSelectedFile() != null) {
-					contentManager.getXml_box_writer().createXML_Box(contentManager.getCurrentCharName(), contentManager.getBoxes());
-					contentManager.getXml_image_writer().setVariables(contentManager.getImages(), contentManager.getLoopBools(), contentManager.getLoopIndices(), contentManager.getTimes());
 					try {
+						contentManager.getXml_box_writer().createXML_Box(contentManager.getCurrentCharName(), contentManager.getBoxes());
+						contentManager.getXml_image_writer().setVariables(contentManager.getImages(), contentManager.getLoopBools(), contentManager.getLoopIndices(), contentManager.getTimes());
 						contentManager.getXml_image_writer().createXML_Image(contentManager.getCurrentCharName());
 					} catch (SizeNotEqualException e1) {
-						e1.printStackTrace();
+						contentManager.console.println(e1.getMessage());
+					} catch (ContentNullException e2) {
+						contentManager.console.println(e2.getMessage());
+					}
+					catch(Exception e3){
+						contentManager.console.println(e3.getMessage());
 					}
 				}
 			}

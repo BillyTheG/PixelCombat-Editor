@@ -3,13 +3,13 @@
 	<type>Zorro</type>
 	<sprites>
 		<knockBackRecover loopIndex="0" loops="false">
-			<img duration="150" key="0">/images/IMG_Zorro_KnockBackRecover_1.png</img>
-			<img duration="150" key="1">/images/IMG_Zorro_KnockBackRecover_2.png</img>
-			<img duration="150" key="2">/images/IMG_Zorro_KnockBackRecover_3.png</img>
-			<img duration="150" key="3">/images/IMG_Zorro_KnockBackRecover_4.png</img>
-			<img duration="150" key="4">/images/IMG_Zorro_KnockBackRecover_5.png</img>
-			<img duration="150" key="5">/images/IMG_Zorro_KnockBackRecover_6.png</img>
-			<img duration="150" key="6">/images/IMG_Zorro_KnockBackRecover_7.png</img>
+			<img duration="150" key="0" x="0.0" y="0.0">/images/IMG_Zorro_KnockBackRecover_1.png</img>
+			<img duration="150" key="1" x="0.0" y="0.0">/images/IMG_Zorro_KnockBackRecover_2.png</img>
+			<img duration="150" key="2" x="0.0" y="0.0">/images/IMG_Zorro_KnockBackRecover_3.png</img>
+			<img duration="150" key="3" x="0.0" y="0.0">/images/IMG_Zorro_KnockBackRecover_4.png</img>
+			<img duration="150" key="4" x="0.0" y="0.0">/images/IMG_Zorro_KnockBackRecover_5.png</img>
+			<img duration="150" key="5" x="0.0" y="0.0">/images/IMG_Zorro_KnockBackRecover_6.png</img>
+			<img duration="150" key="6" x="0.0" y="0.0">/images/IMG_Zorro_KnockBackRecover_7.png</img>
 		</knockBackRecover>
 	</sprites>
 </character>

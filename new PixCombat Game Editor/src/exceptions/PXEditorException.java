@@ -16,7 +16,7 @@ public class PXEditorException extends Exception {
 
 	
 	public PXEditorException(String message, ExceptionGroup exceptionGroup){
-		super(message);
+		super(exceptionGroup+ ":" +message);
 		this.exceptionGroup = exceptionGroup;		
 	}
 	

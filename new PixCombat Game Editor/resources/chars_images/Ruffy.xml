@@ -3,13 +3,13 @@
 	<type>Ruffy</type>
 	<sprites>
 		<jumping loopIndex="0" loops="true">
-			<img duration="100" key="0" x="0.1800003" y="-2.58">/images/ruffy_jump_1.png</img>
-			<img duration="100" key="1" x="0.20000076" y="-2.62">/images/ruffy_jump_2.png</img>
+			<img duration="100" key="0" x="0.0" y="0.0">/images/ruffy_jump_1.png</img>
+			<img duration="100" key="1" x="0.0" y="0.0">/images/ruffy_jump_2.png</img>
 		</jumping>
 		<jumpFall loopIndex="1" loops="true">
-			<img duration="100" key="0" x="0.20000076" y="-2.3199997">/images/ruffy_jump_3.png</img>
-			<img duration="30" key="1" x="0.059999466" y="-2.2600002">/images/ruffy_jump_4.png</img>
-			<img duration="30" key="2" x="0.059999466" y="-2.2600002">/images/ruffy_jump_5.png</img>
+			<img duration="100" key="0" x="0.0" y="0.0">/images/ruffy_jump_3.png</img>
+			<img duration="30" key="1" x="0.0" y="0.0">/images/ruffy_jump_4.png</img>
+			<img duration="30" key="2" x="0.0" y="0.0">/images/ruffy_jump_5.png</img>
 		</jumpFall>
 	</sprites>
 </character>

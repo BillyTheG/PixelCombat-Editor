@@ -19,6 +19,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.Text;
 
 import content.MainContent;
+import exceptions.ContentNullException;
 import math.BoundingRectangle;
 
 public class XML_Box_Creater {
@@ -57,13 +58,17 @@ public class XML_Box_Creater {
 		}
 	}
 
-	public void createXML_Box(String character, Map<String, ArrayList<ArrayList<BoundingRectangle>>> list_list_Boxes) {
+	public void createXML_Box(String character, Map<String, ArrayList<ArrayList<BoundingRectangle>>> list_list_Boxes) throws ContentNullException {
 		Text typeChild = doc.createTextNode(character.substring(0,1).toUpperCase()+character.substring(1, character.length()));
 		type.appendChild(typeChild);
 
 		for (Map.Entry<String, ArrayList<ArrayList<BoundingRectangle>>> picSeq : list_list_Boxes.entrySet()) {
 			// Name der Bildsequenz z.B. stand
 			String picSeq_key = picSeq.getKey().toString();
+			
+			if(picSeq_key== null)
+				throw new ContentNullException(picSeq_key);
+			
 			// diesen als Attribut in das Dok einfügen
 			Element currentPicSeq = doc.createElement(picSeq_key);
 			// Boxes herausnehmen

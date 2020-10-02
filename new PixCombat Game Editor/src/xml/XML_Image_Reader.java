@@ -2,7 +2,7 @@ package xml;
 
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.xml.sax.Attributes;
@@ -20,14 +20,14 @@ public class XML_Image_Reader implements ContentHandler {
 	String ElementContent = null;
 	
 	//All Images
-	private Map<String, ArrayList<LocatedImage>> character = new HashMap<String, ArrayList<LocatedImage>>();
+	private Map<String, ArrayList<LocatedImage>> character = new LinkedHashMap <String, ArrayList<LocatedImage>>();
 	
 	//Basic Looping
-	private Map<String, Boolean> loopBools = new HashMap<String, Boolean>();
-	private Map<String, Integer> loopIndices = new HashMap<String, Integer>();
+	private Map<String, Boolean> loopBools = new LinkedHashMap <String, Boolean>();
+	private Map<String, Integer> loopIndices = new LinkedHashMap <String, Integer>();
 	
 	//Times between Images	
-	private Map<String, ArrayList<Float>> times = new HashMap<String, ArrayList<Float>>();
+	private Map<String, ArrayList<Float>> times = new LinkedHashMap <String, ArrayList<Float>>();
 	private ArrayList<Float> time = new ArrayList<Float>();
 	
 	

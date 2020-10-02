@@ -36,8 +36,8 @@ public final class FileOpener extends Stage {
                     File file = fileChooser.showOpenDialog(selfPointer);
                     if (file != null) {
                     	int ch = file.getName().indexOf(".xml");
-                    	selfPointer.mainContent.setCurrentChar(file.getName().substring(0, ch));
-                    	selfPointer.mainContent.setFile(file);
+                    	selfPointer.mainContent.setCurrentCharName(file.getName().substring(0, ch));
+                    	selfPointer.mainContent.setSelectedFile(file);
                     	selfPointer.mainContent.updateFile();
                     	selfPointer.close();
                     }

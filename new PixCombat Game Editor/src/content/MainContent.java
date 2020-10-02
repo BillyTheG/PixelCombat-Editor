@@ -31,12 +31,16 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import lombok.Getter;
+import lombok.Setter;
 import main.Editor;
 import math.BoundingRectangle;
 import math.Vector2d;
 import xml.XML_Box_Creater;
 import xml.XML_Image_Creater;
 
+@Setter
+@Getter
 public class MainContent extends ContentManager {
 
 	// setup
@@ -48,6 +52,8 @@ public class MainContent extends ContentManager {
 	private BoundingRectangle currPointer = null;
 	public BoundingRectangle copiedPointer = null;
 	private Stage mainStage;
+	
+	
 	private Stage consoleStage;
 	private final FileChooser fileChooser = new FileChooser();
 	private File selectedFile = null;
@@ -106,17 +112,19 @@ public class MainContent extends ContentManager {
 	private ColorAdjust monochrome;
 	private boolean lastBoxesCopiedOnce;
 	private boolean disableUpdate = false;
-	public static int screen_width;
-	public static int screen_height;
+	public int screen_width;
+	public int screen_height;
 
 	// Conctructor
 	public MainContent(Group root, Canvas canvas, Console console, Stage mainStage, Stage consoleStage, int width, int height) {
 		super(root, canvas, console);
+		
+		
 		this.setConsoleStage(consoleStage);
-		MainContent.screen_height = height;
-		MainContent.screen_width = width;
+		this.screen_height = height;
+		this.screen_width = width;
 
-		CENTER.x = MainContent.screen_width / 100f;
+		CENTER.x = screen_width / 100f;
 
 		try {
 			setXmlReader(new XMLContent(this));
@@ -516,239 +524,7 @@ public class MainContent extends ContentManager {
 		this.getCurrentBox().get(getCurrentIndex()).remove(box);
 	}
 
-	public BoundingRectangle getCurrPointer() {
-		return currPointer;
-	}
-
-	public void setCurrPointer(BoundingRectangle currPointer) {
-		this.currPointer = currPointer;
-	}
-
-	public void setFile(File file) {
-		this.setSelectedFile(file);
-
-	}
-
-	public void setCurrentChar(String name) {
-		this.setCurrentCharName(name);
-
-	}
-
-	public ScrollBar getSc() {
-		return sc;
-	}
-
-	public void setSc(ScrollBar sc) {
-		this.sc = sc;
-	}
-
-	public FileChooser getFileChooser() {
-		return fileChooser;
-	}
-
-	public Stage getMainStage() {
-		return mainStage;
-	}
-
-	public void setMainStage(Stage mainStage) {
-		this.mainStage = mainStage;
-	}
-
-	public Map<String, ArrayList<ArrayList<BoundingRectangle>>> getBoxes() {
-		return boxes;
-	}
-
-	public void setBoxes(Map<String, ArrayList<ArrayList<BoundingRectangle>>> boxes) {
-		this.boxes = boxes;
-	}
-
-	public File getSelectedFile() {
-		return selectedFile;
-	}
-
-	public void setSelectedFile(File selectedFile) {
-		this.selectedFile = selectedFile;
-	}
-
-	public XML_Box_Creater getXml_box_writer() {
-		return xml_box_writer;
-	}
-
-	public void setXml_box_writer(XML_Box_Creater xml_box_writer) {
-		this.xml_box_writer = xml_box_writer;
-	}
-
-	public XML_Image_Creater getXml_image_writer() {
-		return xml_image_writer;
-	}
-
-	public void setXml_image_writer(XML_Image_Creater xml_image_writer) {
-		this.xml_image_writer = xml_image_writer;
-	}
-
-	public String getCurrentCharName() {
-		return currentCharName;
-	}
-
-	public void setCurrentCharName(String currentCharName) {
-		this.currentCharName = currentCharName;
-	}
-
-	public Map<String, ArrayList<LocatedImage>> getImages() {
-		return images;
-	}
-
-	public void setImages(Map<String, ArrayList<LocatedImage>> images) {
-		this.images = images;
-	}
-
-	public Map<String, Boolean> getLoopBools() {
-		return loopBools;
-	}
-
-	public void setLoopBools(Map<String, Boolean> loopBools) {
-		this.loopBools = loopBools;
-	}
-
-	public Map<String, Integer> getLoopIndices() {
-		return loopIndices;
-	}
-
-	public void setLoopIndices(Map<String, Integer> loopIndices) {
-		this.loopIndices = loopIndices;
-	}
-
-	public Map<String, ArrayList<Float>> getTimes() {
-		return times;
-	}
-
-	public void setTimes(Map<String, ArrayList<Float>> times) {
-		this.times = times;
-	}
-
-	public int getCurrentIndex() {
-		return currentIndex;
-	}
-
-	public void setCurrentIndex(int currentIndex) {
-		this.currentIndex = currentIndex;
-	}
-
-	public XMLContent getXmlReader() {
-		return xmlReader;
-	}
-
-	public void setXmlReader(XMLContent xmlReader) {
-		this.xmlReader = xmlReader;
-	}
-
-	public ArrayList<ArrayList<BoundingRectangle>> getCurrentBox() {
-		return currentBox;
-	}
-
-	public void setCurrentBox(ArrayList<ArrayList<BoundingRectangle>> currentBox) {
-		this.currentBox = currentBox;
-	}
-
-	public String getCurrentSeq() {
-		return currentSeq;
-	}
-
-	public void setCurrentSeq(String currentSeq) {
-		this.currentSeq = currentSeq;
-	}
-
-	public MyToolBox getMyToolBox() {
-		return myToolBox;
-	}
-
-	public int getScreen_width() {
-		return screen_width;
-	}
-
-	public int getScreen_height() {
-		return screen_height;
-	}
-
-	public float getCurrentDuration() {
-		return currentDuration;
-	}
-
-	public void setCurrentDuration(float currentDuration) {
-		this.currentDuration = currentDuration;
-	}
-
-	public LocatedImage getCurrentImage() {
-		return currentImage;
-	}
-
-	public void setCurrentImage(LocatedImage currentImage) {
-		this.currentImage = currentImage;
-	}
-
-	public List<Float> getCurrentTimes() {
-		return currentTimes;
-	}
-
-	public void setCurrentTimes(List<Float> currentTimes) {
-		this.currentTimes = currentTimes;
-	}
-
-	public EditImage getMyEditImage() {
-		return myEditImage;
-	}
-
-	public IToolObject getCurrentIToolBox() {
-		return currentIToolBox;
-	}
-
-	public void setCurrentIToolBox(IToolObject currentIToolBox) {
-		this.currentIToolBox = currentIToolBox;
-	}
-
-	/**
-	 * @return the currentImages
-	 */
-	public List<LocatedImage> getCurrentImages() {
-		return currentImages;
-	}
-
-	/**
-	 * @param currentImages
-	 *            the currentImages to set
-	 */
-	public void setCurrentImages(List<LocatedImage> currentImages) {
-		this.currentImages = currentImages;
-	}
-
-	/**
-	 * @return the animator
-	 */
-	public Animator getAnimator() {
-		return animator;
-	}
-
-	/**
-	 * @param animator
-	 *            the animator to set
-	 */
-	public void setAnimator(Animator animator) {
-		this.animator = animator;
-	}
-
-	/**
-	 * @return the animatorExecuter
-	 */
-	public Thread getAnimatorExecuter() {
-		return animatorExecuter;
-	}
-
-	/**
-	 * @param animatorExecuter the animatorExecuter to set
-	 */
-	public void setAnimatorExecuter(Thread animatorExecuter) {
-		this.animatorExecuter = animatorExecuter;
-	}
+	
 
 	public void disableObjects(boolean disable) {
 		
@@ -768,32 +544,5 @@ public class MainContent extends ContentManager {
 		
 	}
 
-	/**
-	 * @return the disableUpdate
-	 */
-	public boolean isDisableUpdate() {
-		return disableUpdate;
-	}
-
-	/**
-	 * @param disableUpdate the disableUpdate to set
-	 */
-	public void setDisableUpdate(boolean disableUpdate) {
-		this.disableUpdate = disableUpdate;
-	}
-
-	/**
-	 * @return the consoleStage
-	 */
-	public Stage getConsoleStage() {
-		return consoleStage;
-	}
-
-	/**
-	 * @param consoleStage the consoleStage to set
-	 */
-	public void setConsoleStage(Stage consoleStage) {
-		this.consoleStage = consoleStage;
-	}
 
 }
