@@ -51,6 +51,9 @@ public class BoundingRectangle implements BoundingBoxInterface, IToolObject {
 	public float lastY;;
 	private Vector2d lastPosition = new Vector2d();
 	private int DIAGONAL_DELTA = 25;
+	private float oldScale;
+
+
 
 	/**
 	 * Constructor of BoundingRectangle
@@ -92,7 +95,7 @@ public class BoundingRectangle implements BoundingBoxInterface, IToolObject {
 	 * @param width,
 	 *            width of the Rect
 	 */
-	public BoundingRectangle(Vector2d pos, float height, float width) {
+	public BoundingRectangle(Vector2d pos, float height, float width,float scale) {
 		this.upperLeft = new Vector2d(pos.x - width / 2f, pos.y - height);
 		this.lowerRight = new Vector2d(pos.x + width / 2f, pos.y);
 		this.pos = new Vector2d((upperLeft.x - lowerRight.x) / 2f, (upperLeft.y - lowerRight.y) / 2f);
@@ -122,23 +125,26 @@ public class BoundingRectangle implements BoundingBoxInterface, IToolObject {
 	 * @param width,
 	 *            width of the Rect
 	 */
-	public BoundingRectangle(float height, Vector2d pos, float width) {
-		this.upperLeft = new Vector2d(pos.x - width / 2f, pos.y - height / 2f);
-		this.lowerRight = new Vector2d(pos.x + width / 2f, pos.y + height / 2f);
-		this.pos = pos;
+	public BoundingRectangle(float height, Vector2d pos, float width,float scale) {
+				
+		this.pos = new Vector2d(MainContent.CENTER.x+(pos.x-MainContent.CENTER.x)*scale,MainContent.CENTER.y+ (pos.y-MainContent.CENTER.y)*scale);
+		this.width = scale*width;
+		this.height = scale*height;
+		this.upperLeft = new Vector2d(this.pos.x - this.width / 2f, this.pos.y - this.height / 2f);
+		this.lowerRight = new Vector2d(this.pos.x + this.width / 2f, this.pos.y + this.height / 2f);
+		this.oldScale = scale;
+		
+		currX = this.pos.x * Editor.FIELD_SIZE;
+		currY = this.pos.y * Editor.FIELD_SIZE;
+		lastX = this.pos.x * Editor.FIELD_SIZE;
+		lastY = this.pos.y * Editor.FIELD_SIZE;
+		
 
-		currX = pos.x * Editor.FIELD_SIZE;
-		currY = pos.y * Editor.FIELD_SIZE;
-		lastX = pos.x * Editor.FIELD_SIZE;
-		;
-		lastY = pos.y * Editor.FIELD_SIZE;
-		;
+		lastPosition.copy(this.pos);
 
-		lastPosition.copy(pos);
-
-		this.height = height * Editor.FIELD_SIZE;
-		this.width = width * Editor.FIELD_SIZE;
-
+		this.height = this.height * Editor.FIELD_SIZE;
+		this.width = this.width * Editor.FIELD_SIZE;
+		this.oldScale = scale;
 		initScaleButtons();
 	}
 
@@ -416,15 +422,15 @@ public class BoundingRectangle implements BoundingBoxInterface, IToolObject {
 	private void createButtons() {
 
 		// Creation
-		this.scaleUpperLeft = new Button("", new ImageView(Other.BUTTONICON_SCALE_UPLEFT));
-		this.scaleUpperRight = new Button("", new ImageView(Other.BUTTONICON_SCALE_UPRIGHT));
-		this.scaleDownLeft = new Button("", new ImageView(Other.BUTTONICON_SCALE_DOWNLEFT));
-		this.scaleDownRight = new Button("", new ImageView(Other.BUTTONICON_SCALE_DOWNRIGHT));
+		this.scaleUpperLeft = new Button("", new ImageView(Other.BUTTONICON_SCALE_UPLEFT.image));
+		this.scaleUpperRight = new Button("", new ImageView(Other.BUTTONICON_SCALE_UPRIGHT.image));
+		this.scaleDownLeft = new Button("", new ImageView(Other.BUTTONICON_SCALE_DOWNLEFT.image));
+		this.scaleDownRight = new Button("", new ImageView(Other.BUTTONICON_SCALE_DOWNRIGHT.image));
 
-		this.scaleLeft = new Button("", new ImageView(Other.BUTTONICON_SCALE_LEFT));
-		this.scaleRight = new Button("", new ImageView(Other.BUTTONICON_SCALE_RIGHT));
-		this.scaleDown = new Button("", new ImageView(Other.BUTTONICON_SCALE_DOWN));
-		this.scaleUp = new Button("", new ImageView(Other.BUTTONICON_SCALE_UP));
+		this.scaleLeft = new Button("", new ImageView(Other.BUTTONICON_SCALE_LEFT.image));
+		this.scaleRight = new Button("", new ImageView(Other.BUTTONICON_SCALE_RIGHT.image));
+		this.scaleDown = new Button("", new ImageView(Other.BUTTONICON_SCALE_DOWN.image));
+		this.scaleUp = new Button("", new ImageView(Other.BUTTONICON_SCALE_UP.image));
 
 		// Setting Size
 		this.scaleUpperLeft.setMaxSize(30, 30);
@@ -459,29 +465,29 @@ public class BoundingRectangle implements BoundingBoxInterface, IToolObject {
 		this.scaleUp.setBackground(Background.EMPTY);
 
 		// HoveredProperty
-		this.scaleUpperLeft.setOnMouseEntered(e -> this.scaleUpperLeft.setGraphic(new ImageView(Other.BUTTONICON_SCALE_UPLEFT_HOVERED)));
-		this.scaleUpperLeft.setOnMouseExited(e -> this.scaleUpperLeft.setGraphic(new ImageView(Other.BUTTONICON_SCALE_UPLEFT)));
+		this.scaleUpperLeft.setOnMouseEntered(e -> this.scaleUpperLeft.setGraphic(new ImageView(Other.BUTTONICON_SCALE_UPLEFT_HOVERED.image)));
+		this.scaleUpperLeft.setOnMouseExited(e -> this.scaleUpperLeft.setGraphic(new ImageView(Other.BUTTONICON_SCALE_UPLEFT.image)));
 
-		this.scaleUpperRight.setOnMouseEntered(e -> this.scaleUpperRight.setGraphic(new ImageView(Other.BUTTONICON_SCALE_UPRIGHT_HOVERED)));
-		this.scaleUpperRight.setOnMouseExited(e -> this.scaleUpperRight.setGraphic(new ImageView(Other.BUTTONICON_SCALE_UPRIGHT)));
+		this.scaleUpperRight.setOnMouseEntered(e -> this.scaleUpperRight.setGraphic(new ImageView(Other.BUTTONICON_SCALE_UPRIGHT_HOVERED.image)));
+		this.scaleUpperRight.setOnMouseExited(e -> this.scaleUpperRight.setGraphic(new ImageView(Other.BUTTONICON_SCALE_UPRIGHT.image)));
 
-		this.scaleDownLeft.setOnMouseEntered(e -> this.scaleDownLeft.setGraphic(new ImageView(Other.BUTTONICON_SCALE_DOWNLEFT_HOVERED)));
-		this.scaleDownLeft.setOnMouseExited(e -> this.scaleDownLeft.setGraphic(new ImageView(Other.BUTTONICON_SCALE_DOWNLEFT)));
+		this.scaleDownLeft.setOnMouseEntered(e -> this.scaleDownLeft.setGraphic(new ImageView(Other.BUTTONICON_SCALE_DOWNLEFT_HOVERED.image)));
+		this.scaleDownLeft.setOnMouseExited(e -> this.scaleDownLeft.setGraphic(new ImageView(Other.BUTTONICON_SCALE_DOWNLEFT.image)));
 
-		this.scaleDownRight.setOnMouseEntered(e -> this.scaleDownRight.setGraphic(new ImageView(Other.BUTTONICON_SCALE_DOWNRIGHT_HOVERED)));
-		this.scaleDownRight.setOnMouseExited(e -> this.scaleDownRight.setGraphic(new ImageView(Other.BUTTONICON_SCALE_DOWNRIGHT)));
+		this.scaleDownRight.setOnMouseEntered(e -> this.scaleDownRight.setGraphic(new ImageView(Other.BUTTONICON_SCALE_DOWNRIGHT_HOVERED.image)));
+		this.scaleDownRight.setOnMouseExited(e -> this.scaleDownRight.setGraphic(new ImageView(Other.BUTTONICON_SCALE_DOWNRIGHT.image)));
 
-		this.scaleLeft.setOnMouseEntered(e -> this.scaleLeft.setGraphic(new ImageView(Other.BUTTONICON_SCALE_LEFT_HOVERED)));
-		this.scaleLeft.setOnMouseExited(e -> this.scaleLeft.setGraphic(new ImageView(Other.BUTTONICON_SCALE_LEFT)));
+		this.scaleLeft.setOnMouseEntered(e -> this.scaleLeft.setGraphic(new ImageView(Other.BUTTONICON_SCALE_LEFT_HOVERED.image)));
+		this.scaleLeft.setOnMouseExited(e -> this.scaleLeft.setGraphic(new ImageView(Other.BUTTONICON_SCALE_LEFT.image)));
 
-		this.scaleRight.setOnMouseEntered(e -> this.scaleRight.setGraphic(new ImageView(Other.BUTTONICON_SCALE_RIGHT_HOVERED)));
-		this.scaleRight.setOnMouseExited(e -> this.scaleRight.setGraphic(new ImageView(Other.BUTTONICON_SCALE_RIGHT)));
+		this.scaleRight.setOnMouseEntered(e -> this.scaleRight.setGraphic(new ImageView(Other.BUTTONICON_SCALE_RIGHT_HOVERED.image)));
+		this.scaleRight.setOnMouseExited(e -> this.scaleRight.setGraphic(new ImageView(Other.BUTTONICON_SCALE_RIGHT.image)));
 
-		this.scaleUp.setOnMouseEntered(e -> this.scaleUp.setGraphic(new ImageView(Other.BUTTONICON_SCALE_UP_HOVERED)));
-		this.scaleUp.setOnMouseExited(e -> this.scaleUp.setGraphic(new ImageView(Other.BUTTONICON_SCALE_UP)));
+		this.scaleUp.setOnMouseEntered(e -> this.scaleUp.setGraphic(new ImageView(Other.BUTTONICON_SCALE_UP_HOVERED.image)));
+		this.scaleUp.setOnMouseExited(e -> this.scaleUp.setGraphic(new ImageView(Other.BUTTONICON_SCALE_UP.image)));
 
-		this.scaleDown.setOnMouseEntered(e -> this.scaleDown.setGraphic(new ImageView(Other.BUTTONICON_SCALE_DOWN_HOVERED)));
-		this.scaleDown.setOnMouseExited(e -> this.scaleDown.setGraphic(new ImageView(Other.BUTTONICON_SCALE_DOWN)));
+		this.scaleDown.setOnMouseEntered(e -> this.scaleDown.setGraphic(new ImageView(Other.BUTTONICON_SCALE_DOWN_HOVERED.image)));
+		this.scaleDown.setOnMouseExited(e -> this.scaleDown.setGraphic(new ImageView(Other.BUTTONICON_SCALE_DOWN.image)));
 
 	}
 
@@ -685,6 +691,45 @@ public class BoundingRectangle implements BoundingBoxInterface, IToolObject {
 	@Override
 	public void setLastPos(Vector2d pos) {
 		this.lastPosition = pos;
+	}
+
+	public void resize(float sCALE_FACTOR) {
+		resetToOneScale();
+		
+		this.pos = new Vector2d(MainContent.CENTER.x+(pos.x-MainContent.CENTER.x)*sCALE_FACTOR,MainContent.CENTER.y+ (pos.y-MainContent.CENTER.y)*sCALE_FACTOR);
+		this.width = sCALE_FACTOR*width;
+		this.height = sCALE_FACTOR*height;
+		this.upperLeft = new Vector2d(this.pos.x - this.width / 100f, this.pos.y - this.height / 100f);
+		this.lowerRight = new Vector2d(this.pos.x + this.width / 100f, this.pos.y + this.height / 100f);
+		this.oldScale = sCALE_FACTOR;
+
+		currX = this.pos.x * Editor.FIELD_SIZE;
+		currY = this.pos.y * Editor.FIELD_SIZE;
+		lastX = this.pos.x * Editor.FIELD_SIZE;
+		lastY = this.pos.y * Editor.FIELD_SIZE;		
+
+		lastPosition.copy(this.pos);		
+	}
+
+	private void resetToOneScale() {
+		
+		float oldX = (pos.x- MainContent.CENTER.x)/oldScale;
+		float oldY = (pos.y- MainContent.CENTER.y)/oldScale;
+		
+		this.pos = new Vector2d(MainContent.CENTER.x+oldX,MainContent.CENTER.y+ oldY);
+		this.width = width/oldScale;
+		this.height = height/oldScale;
+		this.upperLeft = new Vector2d(this.pos.x - this.width / 2f, this.pos.y - this.height / 2f);
+		this.lowerRight = new Vector2d(this.pos.x + this.width / 2f, this.pos.y + this.height / 2f);
+		
+	}
+	
+	public void setOldScale(float oldScale) {
+		this.oldScale = oldScale;
+	}
+
+	public float getOldScale() {
+		return oldScale;
 	}
 
 }

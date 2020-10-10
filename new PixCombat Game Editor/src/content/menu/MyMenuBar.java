@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Map;
 
+import content.LocatedImage;
 import content.MainContent;
 import content.misc.Other;
 import exceptions.ContentNullException;
@@ -15,7 +16,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import main.Editor;
@@ -24,30 +24,30 @@ import math.Vector2d;
 
 public class MyMenuBar extends MenuObject {
 
-	private static final Image bground = Other.loadImage("/images/menu/IMG_MenuBox_Menu.png");
+	private static final LocatedImage bground = Other.loadImage("/images/menu/IMG_MenuBox_Menu.png");
 
-	private static final ImageView HELP_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPoint_Help_Unhovered.png"));
+	private static final ImageView HELP_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPoint_Help_Unhovered.png").image);
 
-	private static final ImageView TOGGLEFULLSCREEN_HOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPointSelection_ToggleFullscreen_Unhovered.png"));
-	private static final ImageView TOGGLECONSOLE_HOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPointSelection_ToggleConsole_Unhovered.png"));
+	private static final ImageView TOGGLEFULLSCREEN_HOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPointSelection_ToggleFullscreen_Unhovered.png").image);
+	private static final ImageView TOGGLECONSOLE_HOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPointSelection_ToggleConsole_Unhovered.png").image);
 
 	
-	private static final ImageView HELPITEM_HOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPointSelection_ToggleFullscreen_Unhovered.png"));
+	private static final ImageView HELPITEM_HOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPointSelection_ToggleFullscreen_Unhovered.png").image);
 
-	private static final ImageView OPTIONS_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPoint_Options_Unhovered.png"));
+	private static final ImageView OPTIONS_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPoint_Options_Unhovered.png").image);
 	
-	private static final ImageView LOADPROJECTILE_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPointSelection_LoadSpecialEffect_Unhovered.png"));
-	private static final ImageView LOADBOXES_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPointSelection_LoadBoxes_Unhovered.png"));
-	private static final ImageView LOADFILE_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPoint_LoadFile_Unhovered.png"));
+	private static final ImageView LOADPROJECTILE_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPointSelection_LoadSpecialEffect_Unhovered.png").image);
+	private static final ImageView LOADBOXES_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPointSelection_LoadBoxes_Unhovered.png").image);
+	private static final ImageView LOADFILE_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPoint_LoadFile_Unhovered.png").image);
 
-	private static final ImageView SAVEPROJECTILE_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPointSelection_SaveProjectile_Unhovered.png"));
-	private static final ImageView SAVECHARACTER_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPointSelection_SaveCharacter_Unhovered.png"));
-	private static final ImageView SAVEFILE_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPoint_SaveFile_Unhovered.png"));
+	private static final ImageView SAVEPROJECTILE_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPointSelection_SaveProjectile_Unhovered.png").image);
+	private static final ImageView SAVECHARACTER_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPointSelection_SaveCharacter_Unhovered.png").image);
+	private static final ImageView SAVEFILE_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPoint_SaveFile_Unhovered.png").image);
 
-	private static final ImageView NEWSPECIALEFFECT_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPointSelection_NewSpecialEffect_Unhovered.png"));
-	private static final ImageView NEWPROJECTILE_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPointSelection_NewProjectile_Unhovered.png"));
-	private static final ImageView NEWCHARACTER_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPointSelection_NewCharacter_Unhovered.png"));
-	private static final ImageView MAKEFILE_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPoint_MakeFile_Unhovered.png"));
+	private static final ImageView NEWSPECIALEFFECT_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPointSelection_NewSpecialEffect_Unhovered.png").image);
+	private static final ImageView NEWPROJECTILE_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPointSelection_NewProjectile_Unhovered.png").image);
+	private static final ImageView NEWCHARACTER_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPointSelection_NewCharacter_Unhovered.png").image);
+	private static final ImageView MAKEFILE_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuPoint_MakeFile_Unhovered.png").image);
 
 	// Menu
 	private MenuBar menuBar;
@@ -85,7 +85,7 @@ public class MyMenuBar extends MenuObject {
 		int xPos = (int) ((getPos().x + xOffset) * Editor.FIELD_SIZE);
 		int yPos = (int) ((getPos().y + yOffset) * Editor.FIELD_SIZE);
 
-		graphicsContext.drawImage(bground, xPos, yPos);
+		graphicsContext.drawImage(bground.image, xPos, yPos);
 	}
 
 	@Override

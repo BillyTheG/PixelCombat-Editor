@@ -82,6 +82,8 @@ public class XML_Box_Creater {
 				// Liste von Boxen für ein Bild
 				for (int j = 0; j < currentBoxes_i.size(); j++) {
 					BoundingRectangle currentBox = currentBoxes_i.get(j);
+					currentBox.resize(1);
+					
 					Element currentBox_element = doc.createElement("box");
 					currentBox_element.setAttribute("id", "" + j);
 					currentBox_element.setAttribute("x", "" + (currentBox.getPos().x - MainContent.CENTER.x));

@@ -14,7 +14,7 @@ import javafx.scene.Group;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.image.Image;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import main.Editor;
@@ -22,17 +22,18 @@ import math.Vector2d;
 
 public class EditAnimation extends MenuObject {
 
-	public  static final Image bground = Other.loadImage("/images/menu/IMG_MenuBox_EditAnimation.png");
+	public  static final LocatedImage bground = Other.loadImage("/images/menu/IMG_MenuBox_EditAnimation.png");
 
 	private ChoiceBox<String> loopBool_input;
 	private ChoiceBox<String> loopIndex_input;
 	private ChoiceBox<String> selected_sprites_input;
+	private TextField scale_input;
 	
-	private static final ImageView PLAY_HOVERED 	= new ImageView(Other.BUTTONICON_PLAY_HOVERED);
-	private static final ImageView PLAY_UNHOVERED 	= new ImageView(Other.BUTTONICON_PLAY);
+	private static final ImageView PLAY_HOVERED 	= new ImageView(Other.BUTTONICON_PLAY_HOVERED.image);
+	private static final ImageView PLAY_UNHOVERED 	= new ImageView(Other.BUTTONICON_PLAY.image);
 
-	private static final ImageView STOP_HOVERED = new ImageView(Other.BUTTONICON_STOP_HOVERED);
-	private static final ImageView STOP_UNHOVERED = new ImageView(Other.BUTTONICON_STOP);
+	private static final ImageView STOP_HOVERED = new ImageView(Other.BUTTONICON_STOP_HOVERED.image);
+	private static final ImageView STOP_UNHOVERED = new ImageView(Other.BUTTONICON_STOP.image);
 
 	private Button playAnimation;
 	private Button stopAnimation;
@@ -56,7 +57,7 @@ public class EditAnimation extends MenuObject {
 		int xPos = (int) ((getPos().x + xOffset) * Editor.FIELD_SIZE);
 		int yPos = (int) ((getPos().y + yOffset) * Editor.FIELD_SIZE);
 
-		graphicsContext.drawImage(bground, xPos, yPos);
+		graphicsContext.drawImage(bground.image, xPos, yPos);
 	}
 
 	@Override
@@ -75,8 +76,8 @@ public class EditAnimation extends MenuObject {
 
 	@Override
 	public void init() {
-		yOffset = ((float)(contentManager.getScreen_height() - bground.getHeight()+1 -20))/ Editor.FIELD_SIZE +1f;
-		xOffset = ((float)(EditImage.bground.getWidth() + EditBox.bground.getWidth() ))/ Editor.FIELD_SIZE;
+		yOffset = ((float)(contentManager.getScreen_height() - bground.image.getHeight()+1 -20))/ Editor.FIELD_SIZE +1f;
+		xOffset = ((float)(EditImage.bground.image.getWidth() + EditBox.bground.image.getWidth() ))/ Editor.FIELD_SIZE;
 		
 		createButtons();
 		createChoiceBoxes();
@@ -131,6 +132,10 @@ public class EditAnimation extends MenuObject {
 		this.loopBool_input.setMaxWidth(75);
 		this.loopIndex_input.setMaxWidth(75);
 		this.selected_sprites_input.setMaxWidth(200);
+		
+		
+		this.scale_input = new TextField();
+		this.scale_input.setMaxWidth(100);
 	}
 	
 	private void setPositions() {
@@ -151,13 +156,18 @@ public class EditAnimation extends MenuObject {
 		selected_sprites_input.setLayoutX((getPos().x + xOffset) * Editor.FIELD_SIZE + xOffset2);
 		selected_sprites_input.setLayoutY((getPos().y + yOffset) * Editor.FIELD_SIZE + yOffset2);
 		
+		yOffset2 -= 60;
+		
+		scale_input.setLayoutX((getPos().x + xOffset) * Editor.FIELD_SIZE + xOffset2);
+		scale_input.setLayoutY((getPos().y + yOffset) * Editor.FIELD_SIZE + yOffset2);
+		
 		xOffset2 = 342;		
 		yOffset2 = 22;
 		
 		playAnimation.setLayoutX((getPos().x + xOffset) * Editor.FIELD_SIZE + xOffset2);
 		playAnimation.setLayoutY((getPos().y + yOffset) * Editor.FIELD_SIZE + yOffset2);
 		
-		xOffset2 = (int) (342 + 5 + Other.BUTTONICON_PLAY.getWidth());		
+		xOffset2 = (int) (342 + 5 + Other.BUTTONICON_PLAY.image.getWidth());		
 		yOffset2 = 22;
 		
 		stopAnimation.setLayoutX((getPos().x + xOffset) * Editor.FIELD_SIZE + xOffset2);
@@ -233,7 +243,7 @@ public class EditAnimation extends MenuObject {
 						
 						try {
 							contentManager.disableObjects(true);
-							contentManager.getAnimator().setup(contentManager.getCurrentImages(), contentManager.getCurrentTimes());
+							contentManager.getAnimator().setup(contentManager.getCurrentImages(), contentManager.getCurrentTimes(),contentManager.getLoopIndices().get(contentManager.currentSeq));
 							contentManager.getAnimator().setRunning(true);
 							contentManager.setAnimatorExecuter(new Thread(contentManager.getAnimator()));
 							contentManager.getAnimatorExecuter().setDaemon(true);
@@ -268,12 +278,31 @@ public class EditAnimation extends MenuObject {
 						contentManager.updateImportant();
 					}
 				});
+				
+				this.scale_input.textProperty().addListener((observable, oldValue, newValue) -> {
+
+	
+					try {
+						float newScale = Float.parseFloat(scale_input.getText());
+						if(newScale <0f || newScale > 10f)
+							return;
+						contentManager.setScale(Float.parseFloat(scale_input.getText()));
+						contentManager.changeShapeOfBoxesByScale();
+						contentManager.changeShapeOfImagesByScale();
+						contentManager.updateImportant();
+					} catch (NumberFormatException e) {
+
+					} catch (NullPointerException e) {
+
+					}
+
+				});
 	}
 	
 	
 	
 	private void addToRoot() {
-		root.getChildren().addAll(getLoopBool_input(),getLoopIndex_input(),getSelected_sprites_input(),playAnimation,stopAnimation);
+		root.getChildren().addAll(getLoopBool_input(),getLoopIndex_input(),getSelected_sprites_input(),scale_input,playAnimation,stopAnimation);
 	}
 	
 	

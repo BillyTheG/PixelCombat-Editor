@@ -1,5 +1,6 @@
 package content.menu;
 
+import content.LocatedImage;
 import content.MainContent;
 import content.misc.Other;
 import javafx.beans.value.ChangeListener;
@@ -11,7 +12,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import main.Editor;
@@ -21,9 +21,9 @@ import math.Vector2d;
 
 public class EditBox extends MenuObject {
 
-	public  static final 	Image bground = Other.loadImage("/images/menu/IMG_MenuBox_EditBox.png");
-	private static final 	ImageView RESET_HOVERED = new ImageView(Other.BUTTONICON_RESET_HOVERED);
-	private static final 	ImageView RESET_UNHOVERED = new ImageView(Other.BUTTONICON_RESET);
+	public  static final 	LocatedImage bground = Other.loadImage("/images/menu/IMG_MenuBox_EditBox.png");
+	private static final 	ImageView RESET_HOVERED = new ImageView(Other.BUTTONICON_RESET_HOVERED.image);
+	private static final 	ImageView RESET_UNHOVERED = new ImageView(Other.BUTTONICON_RESET.image);
 
 	private Button reset;
 	
@@ -52,7 +52,7 @@ public class EditBox extends MenuObject {
 		int xPos = (int) ((getPos().x + xOffset) * Editor.FIELD_SIZE);
 		int yPos = (int) ((getPos().y + yOffset) * Editor.FIELD_SIZE);
 
-		graphicsContext.drawImage(bground, xPos, yPos);
+		graphicsContext.drawImage(bground.image, xPos, yPos);
 	}
 
 	@Override
@@ -73,8 +73,8 @@ public class EditBox extends MenuObject {
 	public void init() {
 		this.currentBox = contentManager.getCurrPointer();
 
-		yOffset = ((float) (contentManager.getScreen_height() - bground.getHeight() - 20)) / Editor.FIELD_SIZE + 1f;
-		xOffset = ((float) EditImage.bground.getWidth()) / Editor.FIELD_SIZE;
+		yOffset = ((float) (contentManager.getScreen_height() - bground.image.getHeight() - 20)) / Editor.FIELD_SIZE + 1f;
+		xOffset = ((float) EditImage.bground.image.getWidth()) / Editor.FIELD_SIZE;
 
 		setUpElements();
 		setUpPositions();

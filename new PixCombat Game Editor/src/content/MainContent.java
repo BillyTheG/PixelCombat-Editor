@@ -45,8 +45,8 @@ public class MainContent extends ContentManager {
 
 	// setup
 	private GraphicsContext graphicsContext;
-	private Image backGround = Other.loadImage("/images/raster.png");
-	private Image cover = Other.loadImage("images/menu/IMG_Editor_Cover.png");
+	private Image backGround = Other.loadImage("/images/raster.png").image;
+	private Image cover = Other.loadImage("images/menu/IMG_Editor_Cover.png").image;
 	public static final int MAX_SPRITE_TYPES = 33;
 
 	private BoundingRectangle currPointer = null;
@@ -75,7 +75,7 @@ public class MainContent extends ContentManager {
 	private Map<String, ArrayList<LocatedImage>> images;
 
 	// Basic Looping
-	private Map<String, Boolean> loopBools = new HashMap<String, Boolean>();
+	public Map<String, Boolean> loopBools = new HashMap<String, Boolean>();
 	private Map<String, Integer> loopIndices = new HashMap<String, Integer>();
 
 	// Times between Images
@@ -87,7 +87,7 @@ public class MainContent extends ContentManager {
 	private List<LocatedImage> currentImages;
 	private LocatedImage currentImage;
 	private int currentIndex = 0; // Image Key
-	private String currentSeq = ""; // Name of Animation
+	public String currentSeq = ""; // Name of Animation
 
 	// Menu
 
@@ -114,6 +114,7 @@ public class MainContent extends ContentManager {
 	private boolean disableUpdate = false;
 	public int screen_width;
 	public int screen_height;
+	public float SCALE_FACTOR =1f;
 
 	// Conctructor
 	public MainContent(Group root, Canvas canvas, Console console, Stage mainStage, Stage consoleStage, int width, int height) {
@@ -214,9 +215,9 @@ public class MainContent extends ContentManager {
 		myBonus.repaint(graphicsContext);
 
 		if (getCurrentImage() != null)
-			drawImage();
+			drawImage(SCALE_FACTOR);
 		if (getCurrentBox() != null && getCurrentIndex() < getCurrentBox().size())
-			drawBoxes();
+			drawBoxes(SCALE_FACTOR);
 		
 		graphicsContext.setFill(Color.YELLOW);
 		int x_pos_center = ((int)(CENTER.x*Editor.FIELD_SIZE))-5;
@@ -275,7 +276,7 @@ public class MainContent extends ContentManager {
 		console.println("Scrollbar loaded succesfully");
 	}
 
-	public void drawBoxes() {
+	public void drawBoxes(float SCALE_FACTOR2) {
 		
 		if(animator.isRunning())
 			return;
@@ -284,29 +285,29 @@ public class MainContent extends ContentManager {
 			getCurrentBox().get(getCurrentIndex()).get(i).draw(graphicsContext);
 	}
 
-	private void drawImage() {
+	private void drawImage(float sCALE_FACTOR2) {
 
 		float x = 0;
 		float y = 0;
 
 		if (currentIndex > 0 && drawPreviousImage) {
 
-			x = (getCurrentImages().get(currentIndex - 1).getPos().x) * Editor.FIELD_SIZE - (float) getCurrentImages().get(currentIndex - 1).getWidth() / 2f;
-			y = (getCurrentImages().get(currentIndex - 1).getPos().y) * Editor.FIELD_SIZE - (float) getCurrentImages().get(currentIndex - 1).getHeight() / 2f;
+			x = (getCurrentImages().get(currentIndex - 1).getPos().x) * Editor.FIELD_SIZE - (float) getCurrentImages().get(currentIndex - 1).image.getWidth() / 2f;
+			y = (getCurrentImages().get(currentIndex - 1).getPos().y) * Editor.FIELD_SIZE - (float) getCurrentImages().get(currentIndex - 1).image.getHeight() / 2f;
 
 			monochrome = new ColorAdjust();
 			monochrome.setSaturation(-1);
 			graphicsContext.setGlobalAlpha(PREVIOUS_IMAGE_OPACITY);
 			graphicsContext.setEffect(monochrome);
-			graphicsContext.drawImage(getCurrentImages().get(currentIndex - 1), x, y );
+			graphicsContext.drawImage(getCurrentImages().get(currentIndex - 1).image, x, y );
 			graphicsContext.setEffect(null);
 			graphicsContext.setGlobalAlpha(1);
 		}
 
-		x = (getCurrentImage().getPos().x) * Editor.FIELD_SIZE - (float) getCurrentImage().getWidth() / 2f;
-		y = (getCurrentImage().getPos().y) * Editor.FIELD_SIZE - (float) getCurrentImage().getHeight() / 2f;
+		x = (getCurrentImage().getPos().x) * Editor.FIELD_SIZE - (float) getCurrentImage().image.getWidth() / 2f;
+		y = (getCurrentImage().getPos().y) * Editor.FIELD_SIZE - (float) getCurrentImage().image.getHeight() / 2f;
 
-		graphicsContext.drawImage(getCurrentImage(), x, y );
+		graphicsContext.drawImage(getCurrentImage().image, x, y );
 		getCurrentImage().drawBorder(graphicsContext);
 	}
 
@@ -491,11 +492,31 @@ public class MainContent extends ContentManager {
 				this.currPointer = getCurrentBox().get(getCurrentIndex()).get(i);
 				return;
 			}
-		}
-		
-		
+		}	
 
 	}
+	
+	public void changeShapeOfBoxesByScale(){		
+		for(ArrayList<BoundingRectangle> boxList : getCurrentBox()){
+			for(BoundingRectangle box : boxList){				
+				box.resize(SCALE_FACTOR);		
+			}	
+		}	
+	}
+	
+	public void changeShapeOfImagesByScale(){		
+		
+		for(String sprite : images.keySet()){
+			for(LocatedImage image: images.get(sprite)){
+				image.resize(SCALE_FACTOR);
+				
+			}		
+			
+		}
+		
+	}
+	
+	
 
 	public void addBox(BoundingRectangle box) {
 		try {
@@ -544,5 +565,12 @@ public class MainContent extends ContentManager {
 		
 	}
 
+	public void setScale(float parseFloat) {
+		this.SCALE_FACTOR = parseFloat;
+		
+	}
+	
+ 
+	
 
 }

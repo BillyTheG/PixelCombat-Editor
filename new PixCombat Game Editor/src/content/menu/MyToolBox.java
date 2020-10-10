@@ -18,25 +18,25 @@ import math.Vector2d;
 
 public class MyToolBox extends MenuObject {
 
-	private static final Image bground = Other.loadImage("/images/menu/IMG_MenuBox_Tools.png");
+	private static final Image bground = Other.loadImage("/images/menu/IMG_MenuBox_Tools.png").image;
 
-	private static final ImageView NEWCOLBOX_HOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuButton_New_Hovered.png"));
-	private static final ImageView NEWCOLBOX_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuButton_New_Unhovered.png"));
+	private static final ImageView NEWCOLBOX_HOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuButton_New_Hovered.png").image);
+	private static final ImageView NEWCOLBOX_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuButton_New_Unhovered.png").image);
 
-	private static final ImageView NEWHITBOX_HOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuButton_NewR_Hovered.png"));
-	private static final ImageView NEWHITBOX_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuButton_NewR_Unhovered.png"));
+	private static final ImageView NEWHITBOX_HOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuButton_NewR_Hovered.png").image);
+	private static final ImageView NEWHITBOX_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuButton_NewR_Unhovered.png").image);
 
-	private static final ImageView COPYBOX_HOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuButton_Copy_Hovered.png"));
-	private static final ImageView COPYBOX_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuButton_Copy_Unhovered.png"));
+	private static final ImageView COPYBOX_HOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuButton_Copy_Hovered.png").image);
+	private static final ImageView COPYBOX_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuButton_Copy_Unhovered.png").image);
 
-	private static final ImageView INSERTBOX_HOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuButton_Insert_Hovered.png"));
-	private static final ImageView INSERTBOX_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuButton_Insert_Unhovered.png"));
+	private static final ImageView INSERTBOX_HOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuButton_Insert_Hovered.png").image);
+	private static final ImageView INSERTBOX_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuButton_Insert_Unhovered.png").image);
 
-	private static final ImageView DELETEBOX_HOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuButton_Delete_Hovered.png"));
-	private static final ImageView DELETEBOX_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuButton_Delete_Unhovered.png"));
+	private static final ImageView DELETEBOX_HOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuButton_Delete_Hovered.png").image);
+	private static final ImageView DELETEBOX_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuButton_Delete_Unhovered.png").image);
 
-	private static final ImageView DELETEALLBOX_HOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuButton_DeleteAll_Hovered.png"));
-	private static final ImageView DELETEALLBOX_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuButton_DeleteAll_Unhovered.png"));
+	private static final ImageView DELETEALLBOX_HOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuButton_DeleteAll_Hovered.png").image);
+	private static final ImageView DELETEALLBOX_UNHOVERED = new ImageView(Other.loadImage("/images/menu/IMG_MenuButton_DeleteAll_Unhovered.png").image);
 
 	// Buttons
 	private Button newColBox;
@@ -161,7 +161,7 @@ public class MyToolBox extends MenuObject {
 			@Override
 			public void handle(ActionEvent event) {
 				Random random = new Random();
-				BoundingRectangle rect = new BoundingRectangle(1,new Vector2d(MainContent.CENTER.x -1+random.nextFloat()*2,MainContent.CENTER.y-1+random.nextFloat()*2),1);
+				BoundingRectangle rect = new BoundingRectangle(1,new Vector2d(MainContent.CENTER.x -1+random.nextFloat()*2,MainContent.CENTER.y-1+random.nextFloat()*2),1,contentManager.getSCALE_FACTOR());
 				rect.setHurts(false);
 				rect.setMainContent(contentManager);
 				contentManager.addBox(rect);
@@ -174,7 +174,7 @@ public class MyToolBox extends MenuObject {
 			@Override
 			public void handle(ActionEvent event) {
 				Random random = new Random();
-				BoundingRectangle rect = new BoundingRectangle(1,new Vector2d(MainContent.CENTER.x -1+random.nextFloat()*2,MainContent.CENTER.y-1+random.nextFloat()*2),1);
+				BoundingRectangle rect = new BoundingRectangle(1,new Vector2d(MainContent.CENTER.x -1+random.nextFloat()*2,MainContent.CENTER.y-1+random.nextFloat()*2),1,contentManager.getSCALE_FACTOR());
 				rect.setHurts(true);
 				rect.setMainContent(contentManager);
 				contentManager.addBox(rect);
@@ -241,9 +241,12 @@ public class MyToolBox extends MenuObject {
 		float width 					= copiedPointer.getWidth();
 		float height 					= copiedPointer.getHeight();
 		boolean hurts 					= copiedPointer.getHurts();
-		BoundingRectangle	newRect		= new BoundingRectangle(height, new Vector2d(x +randX, y +randY), width);
+		float oldSclae					= copiedPointer.getOldScale();
+		
+		BoundingRectangle	newRect		= new BoundingRectangle(height, new Vector2d(x +randX, y +randY), width,1);
 		newRect.setMainContent(contentManager);
 		newRect.setHurts(hurts);
+		newRect.setOldScale(oldSclae);
 		contentManager.addBox(newRect);
 	}
 

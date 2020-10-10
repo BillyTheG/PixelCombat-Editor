@@ -1,5 +1,6 @@
 package content.menu;
 
+import content.LocatedImage;
 import content.MainContent;
 import content.misc.Other;
 import javafx.event.ActionEvent;
@@ -7,7 +8,6 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import main.Editor;
@@ -15,16 +15,16 @@ import math.Vector2d;
 
 public class MyBonus extends MenuObject {
 
-	private static final Image bground = Other.loadImage("/images/menu/IMG_Editor_Bonus_Cover.png");
+	private static final LocatedImage bground = Other.loadImage("/images/menu/IMG_Editor_Bonus_Cover.png");
 
-	private static final ImageView PREIMAGE_HOVERED = new ImageView(Other.BUTTONICON_PRE_IMAGE_HOVERED);
-	private static final ImageView PREIMAGE_UNHOVERED = new ImageView(Other.BUTTONICON_PRE_IMAGE);
+	private static final ImageView PREIMAGE_HOVERED = new ImageView(Other.BUTTONICON_PRE_IMAGE_HOVERED.image);
+	private static final ImageView PREIMAGE_UNHOVERED = new ImageView(Other.BUTTONICON_PRE_IMAGE.image);
 
-	private static final ImageView PRE_BOXES_HOVERED = new ImageView(Other.BUTTONICON_PRE_BOX_HOVERED);
-	private static final ImageView PRE_BOXES_UNHOVERED = new ImageView(Other.BUTTONICON_PRE_BOX);
+	private static final ImageView PRE_BOXES_HOVERED = new ImageView(Other.BUTTONICON_PRE_BOX_HOVERED.image);
+	private static final ImageView PRE_BOXES_UNHOVERED = new ImageView(Other.BUTTONICON_PRE_BOX.image);
 
-	private static final ImageView MAGIC_HOVERED = new ImageView(Other.BUTTONICON_MAGIC_HOVERED);
-	private static final ImageView MAGIC_UNHOVERED = new ImageView(Other.BUTTONICON_MAGIC);
+	private static final ImageView MAGIC_HOVERED = new ImageView(Other.BUTTONICON_MAGIC_HOVERED.image);
+	private static final ImageView MAGIC_UNHOVERED = new ImageView(Other.BUTTONICON_MAGIC.image);
 
 	// Buttons
 	private Button preImages;
@@ -45,7 +45,7 @@ public class MyBonus extends MenuObject {
 		int xPos = (int) ((getPos().x + xOffset) * Editor.FIELD_SIZE);
 		int yPos = (int) ((getPos().y + yOffset) * Editor.FIELD_SIZE);
 
-		graphicsContext.drawImage(bground, xPos, yPos);
+		graphicsContext.drawImage(bground.image, xPos, yPos);
 	}
 
 	@Override
@@ -56,8 +56,8 @@ public class MyBonus extends MenuObject {
 	@Override
 	public void init() {
 
-		yOffset = ((float) (contentManager.getScreen_height() -EditImage.bground.getHeight()- bground.getHeight() - 20)) / Editor.FIELD_SIZE + 1f;
-		xOffset = (float) (((float) EditImage.bground.getWidth() + EditBox.bground.getWidth()/2) / Editor.FIELD_SIZE);
+		yOffset = ((float) (contentManager.getScreen_height() -EditImage.bground.image.getHeight()- bground.image.getHeight() - 20)) / Editor.FIELD_SIZE + 1f;
+		xOffset = (float) (((float) EditImage.bground.image.getWidth() + EditBox.bground.image.getWidth()/2) / Editor.FIELD_SIZE);
 
 		
 		createLoadButtons();
@@ -87,10 +87,10 @@ public class MyBonus extends MenuObject {
 		preImages.setLayoutX((getPos().x + xOffset) * Editor.FIELD_SIZE + xOffset2);
 		preImages.setLayoutY((getPos().y + yOffset) * Editor.FIELD_SIZE + yOffset2);
 
-		preBoxes.setLayoutX((getPos().x + xOffset) * Editor.FIELD_SIZE + xOffset2 + Other.BUTTONICON_PRE_IMAGE.getWidth()+2);
+		preBoxes.setLayoutX((getPos().x + xOffset) * Editor.FIELD_SIZE + xOffset2 + Other.BUTTONICON_PRE_IMAGE.image.getWidth()+2);
 		preBoxes.setLayoutY((getPos().y + yOffset) * Editor.FIELD_SIZE + yOffset2);
 
-		magic.setLayoutX((getPos().x + xOffset) * Editor.FIELD_SIZE + xOffset2+ Other.BUTTONICON_PRE_IMAGE.getWidth()+ Other.BUTTONICON_PRE_BOX.getWidth()+4);
+		magic.setLayoutX((getPos().x + xOffset) * Editor.FIELD_SIZE + xOffset2+ Other.BUTTONICON_PRE_IMAGE.image.getWidth()+ Other.BUTTONICON_PRE_BOX.image.getWidth()+4);
 		magic.setLayoutY((getPos().y + yOffset) * Editor.FIELD_SIZE + yOffset2);
 
 	}

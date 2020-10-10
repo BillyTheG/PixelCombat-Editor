@@ -2,14 +2,15 @@
 <character>
 	<type>Ruffy</type>
 	<boxes>
-		<jumping>
+		<attack1>
 			<box_list picture="0" />
 			<box_list picture="1" />
-		</jumping>
-		<jumpFall>
-			<box_list picture="0" />
-			<box_list picture="1" />
-			<box_list picture="2" />
-		</jumpFall>
+			<box_list picture="2">
+				<box height="2.9899998" hurts="false" id="0" width="1.3400002" x="0.37999916" y="-1.6800003" />
+				<box height="1.0" hurts="true" id="1" width="2.540001" x="1.8299999" y="-2.2600002" />
+			</box_list>
+			<box_list picture="3" />
+			<box_list picture="4" />
+		</attack1>
 	</boxes>
 </character>

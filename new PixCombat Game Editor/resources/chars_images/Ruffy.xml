@@ -1,15 +1,1 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<character>
-	<type>Ruffy</type>
-	<sprites>
-		<jumping loopIndex="0" loops="true">
-			<img duration="100" key="0" x="0.0" y="0.0">/images/ruffy_jump_1.png</img>
-			<img duration="100" key="1" x="0.0" y="0.0">/images/ruffy_jump_2.png</img>
-		</jumping>
-		<jumpFall loopIndex="1" loops="true">
-			<img duration="100" key="0" x="0.0" y="0.0">/images/ruffy_jump_3.png</img>
-			<img duration="30" key="1" x="0.0" y="0.0">/images/ruffy_jump_4.png</img>
-			<img duration="30" key="2" x="0.0" y="0.0">/images/ruffy_jump_5.png</img>
-		</jumpFall>
-	</sprites>
-</character>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><character><type>Ruffy</type><sprites><attack1 loopIndex="1" loops="true"><img duration="100" key="0" x="0.0" y="0.0">/images/ruffy_attack_5.png</img><img duration="100" key="1" x="0.0" y="0.0">/images/ruffy_attack_4.png</img><img duration="100" key="2" x="0.1800003" y="-2.4799995">/images/ruffy_attack_3.png</img><img duration="100" key="3" x="0.0" y="0.0">/images/ruffy_attack_2.png</img><img duration="100" key="4" x="0.0" y="0.0">/images/ruffy_attack_1.png</img></attack1></sprites></character>

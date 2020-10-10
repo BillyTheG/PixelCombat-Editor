@@ -12,6 +12,8 @@ import org.xml.sax.SAXException;
 
 import content.LocatedImage;
 import content.MainContent;
+import javafx.scene.image.Image;
+import math.Vector2d;
 
 
 public class XML_Image_Reader implements ContentHandler {
@@ -40,6 +42,10 @@ public class XML_Image_Reader implements ContentHandler {
 	private int key = 0;
 	private String animation = "";
 	private MainContent mainContent;
+
+	private float x = 0;
+
+	private float y = 0;
 	
 	
 	public XML_Image_Reader(MainContent mainContent)
@@ -90,7 +96,8 @@ public class XML_Image_Reader implements ContentHandler {
 				//pick up the meta-info
 				loopIndex = Integer.parseInt(atts.getValue("loopIndex"));
 				loops =  getVal(atts.getValue("loops").toString());
-									
+			
+				
 				time = new ArrayList<Float>();						
 				character.put(localName, new ArrayList<LocatedImage>());				
 				animation = localName;
@@ -101,6 +108,13 @@ public class XML_Image_Reader implements ContentHandler {
 			} else {
 				key = Integer.parseInt(atts.getValue("key"));
 				duration = Float.parseFloat(atts.getValue("duration"));
+				try{
+					x =  Float.parseFloat(atts.getValue("x"));
+					y =  Float.parseFloat(atts.getValue("y"));	
+				}
+				catch(Exception e){
+					mainContent.console.println("The position vector could not read. "+ e.getMessage());
+				}
 				time.add(duration);
 				readingIMG = true;
 			}
@@ -114,8 +128,10 @@ public class XML_Image_Reader implements ContentHandler {
 				if (readingIMG == true) {
 					readingIMG = false;
 					try {
+						LocatedImage locatedImage = loadImage(ElementContent);
+						locatedImage.setPos(locatedImage.getPos().add(new Vector2d(x,y)));
 						character.get(animation).add(key,
-								loadImage(ElementContent));
+								locatedImage);
 					} catch (IndexOutOfBoundsException e) {
 						mainContent.console
 								.println("IndexOutOfBoundsException while parsing character... CHECK KEYS!");
@@ -167,7 +183,7 @@ public class XML_Image_Reader implements ContentHandler {
 
 	public LocatedImage loadImage(String url) {
 		try {
-			LocatedImage img = new LocatedImage(url);
+			LocatedImage img = new LocatedImage(new Image(url),url);
 			mainContent.console.println("picture found");
 			return img;
 		} catch (Exception e) {

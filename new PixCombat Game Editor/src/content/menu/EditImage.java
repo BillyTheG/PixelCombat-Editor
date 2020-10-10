@@ -11,7 +11,6 @@ import javafx.scene.Group;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import main.Editor;
@@ -20,7 +19,7 @@ import math.Vector2d;
 
 public class EditImage extends MenuObject {
 
-	public static final Image bground = Other.loadImage("/images/menu/IMG_MenuBox_EditImage.png");
+	public static final LocatedImage bground = Other.loadImage("/images/menu/IMG_MenuBox_EditImage.png");
 
 	private float xOffset;
 	private float yOffset;
@@ -30,8 +29,8 @@ public class EditImage extends MenuObject {
 	private TextField imageY_input;
 	private LocatedImage currentImage = null;
 
-	private static final ImageView RESET_HOVERED = new ImageView(Other.BUTTONICON_RESET_HOVERED);
-	private static final ImageView RESET_UNHOVERED = new ImageView(Other.BUTTONICON_RESET);
+	private static final ImageView RESET_HOVERED = new ImageView(Other.BUTTONICON_RESET_HOVERED.image);
+	private static final ImageView RESET_UNHOVERED = new ImageView(Other.BUTTONICON_RESET.image);
 
 	private Button reset;
 
@@ -43,7 +42,7 @@ public class EditImage extends MenuObject {
 	public void repaint(GraphicsContext graphicsContext) {
 		int xPos = (int) ((getPos().x + xOffset) * Editor.FIELD_SIZE);
 		int yPos = (int) ((getPos().y + yOffset) * Editor.FIELD_SIZE);
-		graphicsContext.drawImage(bground, xPos, yPos);
+		graphicsContext.drawImage(bground.image, xPos, yPos);
 	}
 
 	@Override
@@ -71,7 +70,7 @@ public class EditImage extends MenuObject {
 	@Override
 	public void init() {
 		this.xOffset = 0f;
-		this.yOffset = ((float) (contentManager.getScreen_height() - bground.getHeight() - 20)) / Editor.FIELD_SIZE + 1f;
+		this.yOffset = ((float) (contentManager.getScreen_height() - bground.image.getHeight() - 20)) / Editor.FIELD_SIZE + 1f;
 		this.currentTimes = contentManager.getCurrentTimes();
 		this.currentImage = contentManager.getCurrentImage();
 

@@ -103,16 +103,19 @@ public class XML_Image_Creater {
 
 			currentPicSeq.setAttribute("loops", "" + loopBool);
 			currentPicSeq.setAttribute("loopIndex", "" + loopIndex);
+			currentPicSeq.setAttribute("airBool", "" + loopBool);
+			currentPicSeq.setAttribute("airIndex", "" + loopIndex);
 
 			// take previously loaded images with attributes and refill them into the xml file
 
 			for (int j = 0; j < currentImages.size(); j++) {
-				LocatedImage image = currentImages.get(j);
+				LocatedImage image = currentImages.get(j);				
 				if (image == null) {
 					mainContent.console.println("The animation: " + currentPicSeq + " has a null element on position: " + j);
 					mainContent.console.println("The insertion of XML Elements will be skipped");
 					break;
 				}
+				image.resize(1);
 				int duration = ((int) currentTimes.get(j).floatValue());
 				String location = (image == null) ? "" : image.getURL();
 

@@ -15,9 +15,9 @@ public class ConsoleScene extends Scene{
 	private Canvas 				      canvas;
 	private Group				      root;
 	private Console				      console;
-	public  static final	Image 	  bground = Other.loadImage("/images/menu/IMG_MenuBox_Console.png");
-	private static final 	ImageView CLEAR_HOVERED = new ImageView(Other.BUTTONICON_CLEAR_HOVERED);
-	private static final 	ImageView CLEAR_UNHOVERED = new ImageView(Other.BUTTONICON_CLEAR);
+	public  static final	Image 	  bground = Other.loadImage("/images/menu/IMG_MenuBox_Console.png").image;
+	private static final 	ImageView CLEAR_HOVERED = new ImageView(Other.BUTTONICON_CLEAR_HOVERED.image);
+	private static final 	ImageView CLEAR_UNHOVERED = new ImageView(Other.BUTTONICON_CLEAR.image);
 	public Button clear;
 		
 	public ConsoleScene(Group root, Console console, Canvas canvas) {

@@ -9,6 +9,7 @@ public class Animator implements Runnable {
 
 	private ArrayList<AnimFrame> frames;
 	private int currFrameIndex;
+	private int loopIndex=0;
 	private float animTime;
 	private float totalDuration;
 	public 	boolean once;
@@ -39,8 +40,9 @@ public class Animator implements Runnable {
 	}
 	
 
-	public synchronized void setup(List<LocatedImage> currentImages, List<Float> currentTimes) throws AnimatorNoContentException
+	public synchronized void setup(List<LocatedImage> currentImages, List<Float> currentTimes, int loopIndex) throws AnimatorNoContentException
 	{
+		this.loopIndex =loopIndex;
 		if(currentImages.isEmpty() || currentTimes.isEmpty())
 			throw new AnimatorNoContentException();
 		
@@ -114,7 +116,7 @@ public class Animator implements Runnable {
 		if(animTime >= totalDuration)
 		{
 			animTime = 0;
-			currFrameIndex = 0;
+			currFrameIndex = loopIndex;
 			mainContent.setCurrentImage(getImage());
 			mainContent.repaint();
 		//	this.mainContent.getSc().setValue(0);

@@ -143,7 +143,7 @@ public class XML_Box_Reader implements ContentHandler {
 				if (readingBox == true) {
 					readingBox = false;
 					try {				
-						BoundingRectangle newBox = new BoundingRectangle(height,new Vector2d(x,y),width);
+						BoundingRectangle newBox = new BoundingRectangle(height,new Vector2d(x,y),width,1);
 						newBox.setHurts(hurts);
 						boxes.get(animation).get(picture).add(newBox);
 					} catch (IndexOutOfBoundsException e) {

@@ -62,7 +62,7 @@ public class Editor extends Application {
 		this.consoleRoot.getChildren().add(console);
 		
 		this.consoleStage.setTitle("PixelCombat Editor Console");
-		this.consoleStage.getIcons().add(Other.loadImage("/images/menu/IMG_Editor_Icon.png"));
+		this.consoleStage.getIcons().add(Other.loadImage("/images/menu/IMG_Editor_Icon.png").image);
 		this.consoleStage.setResizable(false);
 		this.consoleStage.setScene(consoleScene);
 		
@@ -81,7 +81,7 @@ public class Editor extends Application {
 		this.mainStage.setResizable(true);
 		this.mainStage.setFullScreen(true);
 		this.mainStage.setScene(mainScene);
-		this.mainStage.getIcons().add(Other.loadImage("/images/menu/IMG_Editor_Icon.png"));
+		this.mainStage.getIcons().add(Other.loadImage("/images/menu/IMG_Editor_Icon.png").image);
 		this.mainStage.addEventHandler(MouseEvent.ANY, mouseController);
 		this.mainStage.addEventHandler(KeyEvent.ANY, keyController);		
 		
