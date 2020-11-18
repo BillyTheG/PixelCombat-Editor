@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+	<type>SparkTem</type>
+	<boxes>
+		<sequence>
+			<box_list picture="0" />
+			<box_list picture="1" />
+			<box_list picture="2" />
+			<box_list picture="3" />
+			<box_list picture="4" />
+			<box_list picture="5" />
+			<box_list picture="6" />
+			<box_list picture="7" />
+			<box_list picture="8" />
+			<box_list picture="9" />
+			<box_list picture="10" />
+			<box_list picture="11" />
+			<box_list picture="12" />
+			<box_list picture="13" />
+		</sequence>
+	</boxes>
+</character>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+	<type>All</type>
+	<sprites>
+		<natsuIsHit loopIndex="0" loops="false">
+			<img duration="400" key="0" x="0.0" y="0.0">/images/natsu/IMG_Natsu_Disable_1.png</img>
+			<img duration="300" key="1" x="0.0" y="0.0">/images/natsu/IMG_Natsu_Disable_2.png</img>
+			<img duration="200" key="2" x="0.0" y="0.0">/images/natsu/IMG_Natsu_Disable_3.png</img>
+		</natsuIsHit>
+		<natsuKnockBack loopIndex="0" loops="false">
+			<img duration="200" key="0" x="0.0" y="0.0">/images/natsu/IMG_Natsu_Knockback_1.png</img>
+			<img duration="200" key="1" x="0.0" y="0.0">/images/natsu/IMG_Natsu_Knockback_2.png</img>
+			<img duration="200" key="2" x="0.0" y="0.0">/images/natsu/IMG_Natsu_Knockback_3.png</img>
+			<img duration="200" key="3" x="0.0" y="0.0">/images/natsu/IMG_Natsu_Knockback_4.png</img>
+			<img duration="200" key="4" x="0.0" y="0.0">/images/natsu/IMG_Natsu_Knockback_5.png</img>
+			<img duration="200" key="5" x="0.0" y="0.0">/images/natsu/IMG_Natsu_Knockback_6.png</img>
+			<img duration="200" key="6" x="0.0" y="0.0">/images/natsu/IMG_Natsu_Knockback_7.png</img>
+			<img duration="200" key="7" x="0.0" y="0.0">/images/natsu/IMG_Natsu_Knockback_8.png</img>
+		</natsuKnockBack>
+		<natsuInvincible loopIndex="0" loops="false">
+			<img duration="200" key="0" x="0.0" y="0.0">/images/natsu/IMG_Natsu_Invincible_1.png</img>
+			<img duration="600" key="1" x="0.0" y="0.0">/images/natsu/IMG_Natsu_Invincible_2.png</img>
+			<img duration="200" key="2" x="0.0" y="0.0">/images/natsu/IMG_Natsu_Invincible_3.png</img>
+			<img duration="200" key="3" x="0.0" y="0.0">/images/natsu/IMG_Natsu_Invincible_4.png</img>
+		</natsuInvincible>
+		<zorroIsHit loopIndex="0" loops="false">
+			<img duration="300" key="0" x="0.0" y="0.0">/images/zorro/IMG_Zorro_isHit_1.png</img>
+			<img duration="200" key="1" x="0.0" y="0.0">/images/zorro/IMG_Zorro_isHit_2.png</img>
+		</zorroIsHit>
+		<zorroKnockBack loopIndex="0" loops="false">
+			<img duration="200" key="0" x="0.0" y="0.0">/images/zorro/IMG_Zorro_KnockBack_1.png</img>
+			<img duration="200" key="1" x="0.0" y="0.0">/images/zorro/IMG_Zorro_KnockBack_2.png</img>
+			<img duration="200" key="2" x="0.0" y="0.0">/images/zorro/IMG_Zorro_KnockBack_3.png</img>
+			<img duration="200" key="3" x="0.0" y="0.0">/images/zorro/IMG_Zorro_KnockBack_4.png</img>
+			<img duration="200" key="4" x="0.0" y="0.0">/images/zorro/IMG_Zorro_KnockBack_5.png</img>
+			<img duration="200" key="5" x="0.0" y="0.0">/images/zorro/IMG_Zorro_KnockBack_6.png</img>
+			<img duration="200" key="6" x="0.0" y="0.0">/images/zorro/IMG_Zorro_KnockBack_7.png</img>
+			<img duration="200" key="7" x="0.0" y="0.0">/images/zorro/IMG_Zorro_KnockBack_8.png</img>
+		</zorroKnockBack>
+		<zorroInvincible loopIndex="0" loops="false">
+			<img duration="200" key="0" x="0.0" y="0.0">/images/zorro/IMG_Zorro_KnockedOut_0.png</img>
+			<img duration="600" key="1" x="0.0" y="0.0">/images/zorro/IMG_Zorro_KnockedOut_1.png</img>
+			<img duration="200" key="2" x="0.0" y="0.0">/images/zorro/IMG_Zorro_KnockedOut_2.png</img>
+			<img duration="200" key="3" x="0.0" y="0.0">/images/zorro/IMG_Zorro_KnockedOut_3.png</img>
+			<img duration="200" key="4" x="0.0" y="0.0">/images/zorro/IMG_Zorro_KnockedOut_4.png</img>
+		</zorroInvincible>
+		<disabled loopIndex="0" loops="false">
+			<img duration="300" key="0" x="0.10000038" y="-2.54">/images/ruffy/IMG_Ruffy_Disable_1.png</img>
+			<img duration="200" key="1" x="0.15999985" y="-2.5599995">/images/ruffy/IMG_Ruffy_Disable_2.png</img>
+		</disabled>
+		<disabledRecover loopIndex="0" loops="false">
+			<img duration="200" key="0" x="0.15999985" y="-2.5599995">/images/ruffy/IMG_Ruffy_Disable_2.png</img>
+			<img duration="300" key="1" x="0.10000038" y="-2.54">/images/ruffy/IMG_Ruffy_Disable_1.png</img>		
+		</disabledRecover>
+		<knockBack loopIndex="0" loops="false">
+			<img duration="200" key="0" x="0.07999992" y="-2.6000004">/images/ruffy/IMG_Ruffy_KnockBack_1.png</img>
+			<img duration="200" key="1" x="0.1800003" y="-2.2399998">/images/ruffy/IMG_Ruffy_KnockBack_2.png</img>
+			<img duration="200" key="2" x="-0.040000916" y="-2.1400003">/images/ruffy/IMG_Ruffy_KnockBack_3.png</img>
+			<img duration="200" key="3" x="0.0" y="-2.1599998">/images/ruffy/IMG_Ruffy_KnockBack_4.png</img>
+			<img duration="200" key="4" x="0.059999466" y="-2.1400003">/images/ruffy/IMG_Ruffy_KnockBack_5.png</img>
+			<img duration="200" key="5" x="-0.2800007" y="-2.3199997">/images/ruffy/IMG_Ruffy_KnockBack_6.png</img>
+			<img duration="200" key="6" x="0.0" y="-2.8400002">/images/ruffy/IMG_Ruffy_KnockBack_7.png</img>
+		</knockBack>
+		<knockBackFall loopIndex="0" loops="true">
+			<img duration="200" key="0" x="-0.29999924" y="-3.0">/images/ruffy/IMG_Ruffy_KnockBack_8.png</img>
+			<img duration="200" key="1" x="-0.34000015" y="-3.06">/images/ruffy/IMG_Ruffy_KnockBack_9.png</img>
+			<img duration="200" key="2" x="-0.37999916" y="-3.1">/images/ruffy/IMG_Ruffy_KnockBack_10.png</img>
+			<img duration="200" key="3" x="-0.39999962" y="-3.1800003">/images/ruffy/IMG_Ruffy_KnockBack_11.png</img>
+			<img duration="200" key="4" x="-0.37999916" y="-3.1999998">/images/ruffy/IMG_Ruffy_KnockBack_12.png</img>
+		</knockBackFall>
+		<onGround loopIndex="0" loops="false">
+			<img duration="200" key="0" x="-0.040000916" y="-2.58">/images/ruffy/IMG_Ruffy_Invincible_1.png</img>
+			<img duration="600" key="1" x="-0.10000038" y="-2.6999998">/images/ruffy/IMG_Ruffy_Invincible_2.png</img>
+			<img duration="200" key="2" x="-0.21999931" y="-2.8199997">/images/ruffy/IMG_Ruffy_Invincible_3.png</img>
+			<img duration="200" key="3" x="0.20000076" y="-2.6800003">/images/ruffy/IMG_Ruffy_Invincible_4.png</img>
+			<img duration="200" key="4" x="0.1800003" y="-2.6999998">/images/ruffy/IMG_Ruffy_Invincible_5.png</img>
+		</onGround>
+	</sprites>
+</character>

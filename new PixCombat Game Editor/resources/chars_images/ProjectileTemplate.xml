@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+	<type>ProjectileTemplate</type>
+	<sprites>
+		<move airBool="true" airIndex="0" loopIndex="0" loops="true">
+			<img duration="50" key="0" x="-1.7800007" y="-1.9200001">/images/Projectile_Shana_Fire_Blast_3.png</img>
+			<img duration="50" key="1" x="-1.7999992" y="-2.08">/images/Projectile_Shana_Fire_Blast_2.png</img>
+			<img duration="50" key="2" x="-1.8999996" y="-2.1400003">/images/Projectile_Shana_Fire_Blast_1.png</img>
+			<img duration="50" key="3" x="-1.9400005" y="-2.3199997">/images/Projectile_Shana_Fire_Blast_0.png</img>
+		</move>
+	</sprites>
+</character>
+9

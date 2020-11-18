@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+	<type>All</type>
+	<boxes>
+		<zorroKnockBack>
+			<box_list picture="0" />
+			<box_list picture="1" />
+			<box_list picture="2" />
+			<box_list picture="3" />
+			<box_list picture="4" />
+			<box_list picture="5" />
+			<box_list picture="6" />
+			<box_list picture="7" />
+		</zorroKnockBack>
+		<disabled>
+			<box_list picture="0">
+				<box height="3.2900004" hurts="false" id="0" width="1.5" x="0.1099987" y="-1.8999996" />
+			</box_list>
+			<box_list picture="1">
+				<box height="3.2800007" hurts="false" id="0" width="1.4300003" x="-1.1700001" y="-1.7224998" />
+				<box height="2.1800003" hurts="false" id="1" width="1.4300003" x="0.1799984" y="-1.1499996" />
+			</box_list>
+		</disabled>
+		<disabledRecover>
+			<box_list picture="0">
+				<box height="3.2800007" hurts="false" id="0" width="1.4300003" x="-1.1700001" y="-1.7224998" />
+				<box height="2.1800003" hurts="false" id="1" width="1.4300003" x="0.1799984" y="-1.1499996" />
+			</box_list>
+			<box_list picture="1">
+				<box height="3.2900004" hurts="false" id="0" width="1.5" x="0.1099987" y="-1.8999996" />
+			</box_list>			
+		</disabledRecover>
+		<knockBack>
+			<box_list picture="0">
+				<box height="3.2800007" hurts="false" id="0" width="1.4300003" x="0.21999931" y="-1.8400002" />
+			</box_list>
+			<box_list picture="1">
+				<box height="4.26" hurts="false" id="0" width="1.4300003" x="0.0" y="-2.17" />
+			</box_list>
+			<box_list picture="2">
+				<box height="4.26" hurts="false" id="0" width="1.4300003" x="-0.07999992" y="-2.1000004" />
+			</box_list>
+			<box_list picture="3">
+				<box height="4.26" hurts="false" id="0" width="1.4300003" x="-0.060001373" y="-2.1000004" />
+			</box_list>
+			<box_list picture="4">
+				<box height="4.26" hurts="false" id="0" width="1.4300003" x="0.059999466" y="-2.1999998" />
+			</box_list>
+			<box_list picture="5">
+				<box height="2.5300007" hurts="false" id="0" width="1.9799995" x="-0.050001144" y="-1.9300003" />
+			</box_list>
+			<box_list picture="6">
+				<box height="2.4099998" hurts="false" id="0" width="2.6599998" x="0.09000015" y="-2.12" />
+			</box_list>
+		</knockBack>
+		<knockBackFall>
+			<box_list picture="0">
+				<box height="1.7399998" hurts="false" id="0" width="4.8899994" x="-0.30000114" y="-1.8199997" />
+			</box_list>
+			<box_list picture="1">
+				<box height="1.7399998" hurts="false" id="0" width="4.8899994" x="-0.30000114" y="-1.8000002" />
+			</box_list>
+			<box_list picture="2">
+				<box height="1.7399998" hurts="false" id="0" width="4.8899994" x="-0.44000053" y="-1.7399998" />
+			</box_list>
+			<box_list picture="3">
+				<box height="1.7399998" hurts="false" id="0" width="4.8899994" x="-0.48000145" y="-1.7399998" />
+			</box_list>
+			<box_list picture="4">
+				<box height="1.7399998" hurts="false" id="0" width="4.8899994" x="-0.5600014" y="-1.6599998" />
+			</box_list>
+		</knockBackFall>
+		<zorroIsHit>
+			<box_list picture="0" />
+			<box_list picture="1" />
+		</zorroIsHit>
+		<natsuIsHit>
+			<box_list picture="0" />
+			<box_list picture="1" />
+			<box_list picture="2" />
+		</natsuIsHit>
+		<onGround>
+			<box_list picture="0" />
+			<box_list picture="1" />
+			<box_list picture="2" />
+			<box_list picture="3" />
+			<box_list picture="4" />
+		</onGround>
+		<natsuKnockBack>
+			<box_list picture="0" />
+			<box_list picture="1" />
+			<box_list picture="2" />
+			<box_list picture="3" />
+			<box_list picture="4" />
+			<box_list picture="5" />
+			<box_list picture="6" />
+			<box_list picture="7" />
+		</natsuKnockBack>
+		<natsuInvincible>
+			<box_list picture="0" />
+			<box_list picture="1" />
+			<box_list picture="2" />
+			<box_list picture="3" />
+		</natsuInvincible>
+		<zorroInvincible>
+			<box_list picture="0" />
+			<box_list picture="1" />
+			<box_list picture="2" />
+			<box_list picture="3" />
+			<box_list picture="4" />
+		</zorroInvincible>
+	</boxes>
+</character>

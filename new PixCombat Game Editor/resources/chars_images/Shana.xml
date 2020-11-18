@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+	<type>Shana</type>
+	<sprites>
+		<attack4 airBool="false" airIndex="0" loopIndex="0" loops="false">
+			<img duration="160" key="0" x="0.29000092" y="-3.1800003">/images/shana_blue_attack4_0.png</img>
+			<img duration="100" key="1" x="0.44000053" y="-3.1599998">/images/shana_blue_attack4_1.png</img>
+			<img duration="100" key="2" x="0.0" y="-2.83">/images/shana_blue_attack4_2.png</img>
+			<img duration="300" key="3" x="-0.23999977" y="-2.8400002">/images/shana_blue_attack4_3.png</img>
+			<img duration="160" key="4" x="-0.25" y="-3.3400002">/images/shana_blue_attack4_4.png</img>
+		</attack4>
+	</sprites>
+</character>

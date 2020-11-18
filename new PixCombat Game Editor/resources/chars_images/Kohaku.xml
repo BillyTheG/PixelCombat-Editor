@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<character>
+	<type>Kohaku</type>
+	<sprites>
+		<maidenCall airBool="false" airIndex="0" loopIndex="0" loops="false">
+			<img duration="100" key="0" x="-0.19000053" y="-1.0299997">/images/kohaku_maiden_call_0.png</img>
+			<img duration="85" key="1" x="-0.12999916" y="-1.0599995">/images/kohaku_maiden_call_1.png</img>
+			<img duration="885" key="2" x="-0.12000084" y="-1.0699997">/images/kohaku_maiden_call_2.png</img>
+			<img duration="345" key="3" x="-0.13999939" y="-1.0666666">/images/kohaku_maiden_call_3.png</img>
+			<img duration="245" key="4" x="-0.030000687" y="-1.0699997">/images/kohaku_maiden_call_4.png</img>
+			<img duration="45" key="5" x="-0.030000687" y="-1.0900002">/images/kohaku_maiden_call_5.png</img>
+			<img duration="845" key="6" x="-0.069999695" y="-1.1000004">/images/kohaku_maiden_call_6.png</img>
+			<img duration="145" key="7" x="-0.3899994" y="-1.0100002">/images/kohaku_maiden_call_7.png</img>
+			<img duration="165" key="8" x="-0.20000076" y="-0.9899998">/images/kohaku_maiden_call_8.png</img>
+		</maidenCall>
+	</sprites>
+</character>
