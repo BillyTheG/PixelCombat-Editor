@@ -26,10 +26,13 @@ public class MyBonus extends MenuObject {
 	private static final ImageView MAGIC_HOVERED = new ImageView(Other.BUTTONICON_MAGIC_HOVERED.image);
 	private static final ImageView MAGIC_UNHOVERED = new ImageView(Other.BUTTONICON_MAGIC.image);
 
+	private static final ImageView REF_HOVERED = new ImageView(Other.BUTTONICON_REF_RESET_HOVERED.image);
+	private static final ImageView REF_UNHOVERED = new ImageView(Other.BUTTONICON_REF_RESET.image);
 	// Buttons
 	private Button preImages;
 	private Button preBoxes;
 	public  Button magic;
+	public  Button ref;
 
 
 	private float  xOffset;
@@ -67,7 +70,7 @@ public class MyBonus extends MenuObject {
 	}
 
 	private void addToRoot() {
-		root.getChildren().addAll(preImages, preBoxes, magic);
+		root.getChildren().addAll(preImages, preBoxes, magic,ref);
 	}
 
 	@Override
@@ -75,7 +78,7 @@ public class MyBonus extends MenuObject {
 		preImages.setDisable(disable);
 		preBoxes.setDisable(disable);
 		magic.setDisable(disable);
-		
+		ref.setDisable(disable);
 	}
 
 
@@ -92,6 +95,9 @@ public class MyBonus extends MenuObject {
 
 		magic.setLayoutX((getPos().x + xOffset) * Editor.FIELD_SIZE + xOffset2+ Other.BUTTONICON_PRE_IMAGE.image.getWidth()+ Other.BUTTONICON_PRE_BOX.image.getWidth()+4);
 		magic.setLayoutY((getPos().y + yOffset) * Editor.FIELD_SIZE + yOffset2);
+		
+		ref.setLayoutX((getPos().x + xOffset) * Editor.FIELD_SIZE + xOffset2+ Other.BUTTONICON_PRE_IMAGE.image.getWidth()+ Other.BUTTONICON_PRE_BOX.image.getWidth() + Other.BUTTONICON_MAGIC.image.getWidth()+6);
+		ref.setLayoutY((getPos().y + yOffset) * Editor.FIELD_SIZE + yOffset2);
 
 	}
 
@@ -110,6 +116,11 @@ public class MyBonus extends MenuObject {
 		magic.setBackground(Background.EMPTY);
 		magic.setOnMouseEntered(e -> magic.setGraphic(MAGIC_HOVERED));
 		magic.setOnMouseExited(e -> magic.setGraphic(MAGIC_UNHOVERED));
+		
+		ref = new Button("", REF_UNHOVERED);
+		ref.setBackground(Background.EMPTY);
+		ref.setOnMouseEntered(e -> ref.setGraphic(REF_HOVERED));
+		ref.setOnMouseExited(e -> ref.setGraphic(REF_UNHOVERED));
 
 		
 		
@@ -146,7 +157,19 @@ public class MyBonus extends MenuObject {
 
 			@Override
 			public void handle(ActionEvent event) {
-				//TODO
+				boolean oldVal = contentManager.isBlendActive();
+				contentManager.setBlendActive(!oldVal);
+				contentManager.repaint();
+			}
+		});
+		
+		ref.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				boolean oldVal = contentManager.isDrawRefImage();
+				contentManager.setDrawRefImage(!oldVal);
+				contentManager.repaint();
 			}
 		});
 		

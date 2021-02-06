@@ -44,7 +44,19 @@ public class Other {
 	
 	public static final LocatedImage BUTTONICON_RESET						= Other.loadImage("images/menu/IMG_MenuButton_Reset_Unhovered.png");
 	public static final LocatedImage BUTTONICON_RESET_HOVERED				= Other.loadImage("images/menu/IMG_MenuButton_Reset_Hovered.png");
+	
+	public static final LocatedImage BUTTONICON_REF_RESET						= Other.loadImage("images/menu/IMG_Editor_Bonus_Ref_Image.png");
+	public static final LocatedImage BUTTONICON_REF_RESET_HOVERED				= Other.loadImage("images/menu/IMG_Editor_Bonus_Ref_Image_Hovered.png");
 
+	public static final LocatedImage BUTTONICON_BUTTON_REF						= Other.loadImage("images/menu/IMG_MenuButton_Ref_Unhovered.png");
+	public static final LocatedImage BUTTONICON_BUTTON_REF_HOVERED				= Other.loadImage("images/menu/IMG_MenuButton_Ref_Hovered.png");
+
+	public static final LocatedImage BUTTONICON_CURRENT_IMAGE_SAVED_FLAG				= Other.loadImage("images/menu/IMG_MenuBox_EditImage_Ref_Saved.png");
+
+	
+	
+
+	
 	
 	public static final float PERMITTED_MIN_VALUE_DURATION 	= 0f;
 	public static final float PERMITTED_MAX_VALUE_DURATION 	= 9999f;

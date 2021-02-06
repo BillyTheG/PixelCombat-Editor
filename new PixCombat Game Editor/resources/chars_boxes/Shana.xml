@@ -2,22 +2,15 @@
 <character>
 	<type>Shana</type>
 	<boxes>
-		<attack4>
-			<box_list picture="0">
-				<box height="5.5599995" hurts="false" id="0" width="2.1800003" x="-0.0700016" y="-2.8400002" />
-			</box_list>
-			<box_list picture="1">
-				<box height="5.58" hurts="false" id="0" width="2.7700005" x="0.27999878" y="-2.83" />
-			</box_list>
-			<box_list picture="2">
-				<box height="5.3999996" hurts="false" id="0" width="1.8600006" x="1.1299992" y="-2.7399998" />
-			</box_list>
-			<box_list picture="3">
-				<box height="5.3999996" hurts="false" id="0" width="1.8600006" x="1.4200001" y="-2.7600002" />
-			</box_list>
-			<box_list picture="4">
-				<box height="5.7999997" hurts="false" id="0" width="1.8600006" x="0.42000008" y="-3.08" />
-			</box_list>
-		</attack4>
+		<airAttack1>
+			<box_list picture="0" />
+			<box_list picture="1" />
+			<box_list picture="2" />
+			<box_list picture="3" />
+			<box_list picture="4" />
+			<box_list picture="5" />
+			<box_list picture="6" />
+			<box_list picture="7" />
+		</airAttack1>
 	</boxes>
 </character>

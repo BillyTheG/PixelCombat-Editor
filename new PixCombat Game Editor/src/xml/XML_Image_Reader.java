@@ -86,7 +86,7 @@ public class XML_Image_Reader implements ContentHandler {
 
 	public void startElement(String uri, String localName, String qName,
 			Attributes atts) throws SAXException {
-		if (localName.equals("sprites") && readingSprites == false) {
+		if (qName.equals("sprites") && readingSprites == false) {
 			readingSprites = true;
 		} else if (readingSprites == true) {
 			if (readingAnimation == false) {
@@ -99,8 +99,8 @@ public class XML_Image_Reader implements ContentHandler {
 			
 				
 				time = new ArrayList<Float>();						
-				character.put(localName, new ArrayList<LocatedImage>());				
-				animation = localName;
+				character.put(qName, new ArrayList<LocatedImage>());				
+				animation = qName;
 				times.put(animation, time);
 				this.loopBools.put(animation, loops);
 				this.loopIndices.put(animation,loopIndex);	
@@ -142,8 +142,8 @@ public class XML_Image_Reader implements ContentHandler {
 					
 				} else {
 					readingAnimation = false;
-					mainContent.console.println("Loaded animation " + localName
-							+ " with " + character.get(localName).size()
+					mainContent.console.println("Loaded animation " + qName
+							+ " with " + character.get(qName).size()
 							+ " images");
 					mainContent.console.println("Loops: " + loops );
 					if(loops)
@@ -187,8 +187,8 @@ public class XML_Image_Reader implements ContentHandler {
 			mainContent.console.println("picture found");
 			return img;
 		} catch (Exception e) {
-			mainContent.console.println("no picture found");
-			return null;
+			mainContent.console.println("no picture found, the url: " +url +" does not include an image.");
+			throw e;
 		}
 	}
 

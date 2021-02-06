@@ -7,9 +7,13 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import lombok.Getter;
+import lombok.Setter;
 import main.Editor;
 import math.Vector2d;
 
+@Setter
+@Getter
 public class LocatedImage  implements IToolObject{
     private final String url;
     private boolean isMarked = false;
@@ -24,6 +28,7 @@ public class LocatedImage  implements IToolObject{
     private Vector2d lastPosition 	= new Vector2d(MainContent.CENTER.x,MainContent.CENTER.y);
 	public  Image image;
 	private float oldScale = 1f;
+	private boolean ref = false;
     
     public LocatedImage(Image image,String url) {
         this.url = url;
@@ -56,7 +61,7 @@ public class LocatedImage  implements IToolObject{
 	}
     
     
-	private void updateOffset() {
+	public void updateOffset() {
 	   offsetPos.x = pos.x - MainContent.CENTER.x;
 	   offsetPos.y = pos.y - MainContent.CENTER.y;
 	}

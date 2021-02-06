@@ -2,21 +2,31 @@
 <character>
 	<type>SparkTem</type>
 	<sprites>
-		<sequence airBool="false" airIndex="0" loopIndex="0" loops="false">
-			<img duration="80" key="0" x="-0.29999924" y="-2.5500002">/images/dust_shana_frontal_wave_0.png</img>
-			<img duration="80" key="1" x="-0.29000092" y="-2.2600002">/images/dust_shana_frontal_wave_1.png</img>
-			<img duration="80" key="2" x="-0.8299999" y="-2.2600002">/images/dust_shana_frontal_wave_2.png</img>
-			<img duration="80" key="3" x="-0.3899994" y="-2.5">/images/dust_shana_frontal_wave_3.png</img>
-			<img duration="80" key="4" x="-0.040000916" y="-2.6900005">/images/dust_shana_frontal_wave_4.png</img>
-			<img duration="80" key="5" x="0.35000038" y="-2.9700003">/images/dust_shana_frontal_wave_5.png</img>
-			<img duration="80" key="6" x="1.0900002" y="-3.2200003">/images/dust_shana_frontal_wave_6.png</img>
-			<img duration="80" key="7" x="1.4200001" y="-3.54">/images/dust_shana_frontal_wave_7.png</img>
-			<img duration="80" key="8" x="1.6000004" y="-4.08">/images/dust_shana_frontal_wave_8.png</img>
-			<img duration="80" key="9" x="1.5200005" y="-4.3">/images/dust_shana_frontal_wave_9.png</img>
-			<img duration="80" key="10" x="1.6900005" y="-4.31">/images/dust_shana_frontal_wave_10.png</img>
-			<img duration="80" key="11" x="1.9799995" y="-4.38">/images/dust_shana_frontal_wave_11.png</img>
-			<img duration="80" key="12" x="2.0" y="-4.4">/images/dust_shana_frontal_wave_12.png</img>
-			<img duration="80" key="13" x="2.290001" y="-4.37">/images/dust_shana_frontal_wave_13.png</img>
-		</sequence>
+		<hitSparkRed airBool="false" airIndex="0" loopIndex="0" loops="false">
+			<img duration="150" key="0" x="-0.020000458" y="-0.03999996">/images/spark_kirito_hit_red_0.png</img>
+		</hitSparkRed>
+		<hitSparkBlue airBool="false" airIndex="0" loopIndex="0" loops="false">
+			<img duration="150" key="0" x="-0.020000458" y="-0.020000458">/images/spark_kirito_hit_blue_0.png</img>
+		</hitSparkBlue>
+		<slashSpark1Blue airBool="false" airIndex="0" loopIndex="0" loops="false">
+			<img duration="150" key="0" x="0.20000076" y="-0.06000042">/images/spark_kirito_slash1_blue_0.png</img>
+			<img duration="150" key="1" x="0.1800003" y="-0.020000458">/images/spark_kirito_slash1_blue_1.png</img>
+			<img duration="150" key="2" x="0.10000038" y="0.0">/images/spark_kirito_slash1_blue_2.png</img>
+		</slashSpark1Blue>
+		<slashSpark2Blue airBool="false" airIndex="0" loopIndex="0" loops="false">
+			<img duration="150" key="0" x="0.10000038" y="0.07999992">/images/spark_kirito_slash2_blue_0.png</img>
+			<img duration="150" key="1" x="0.059999466" y="0.07999992">/images/spark_kirito_slash2_blue_1.png</img>
+			<img duration="150" key="2" x="0.12000084" y="0.10000038">/images/spark_kirito_slash2_blue_2.png</img>
+		</slashSpark2Blue>
+		<slashSpark3Blue airBool="false" airIndex="0" loopIndex="0" loops="false">
+			<img duration="150" key="0" x="-0.13999939" y="0.06000042">/images/spark_kirito_slash3_blue_0.png</img>
+			<img duration="150" key="1" x="-0.29999924" y="0.119999886">/images/spark_kirito_slash3_blue_1.png</img>
+			<img duration="150" key="2" x="-0.26000023" y="0.10000038">/images/spark_kirito_slash3_blue_2.png</img>
+		</slashSpark3Blue>
+		<slashSpark4Blue airBool="false" airIndex="0" loopIndex="0" loops="false">
+			<img duration="150" key="0" x="0.0" y="0.119999886">/images/spark_kirito_slash4_blue_0.png</img>
+			<img duration="150" key="1" x="0.0" y="-0.06000042">/images/spark_kirito_slash4_blue_1.png</img>
+			<img duration="150" key="2" x="0.0" y="-0.19999981">/images/spark_kirito_slash4_blue_2.png</img>
+		</slashSpark4Blue>
 	</sprites>
 </character>

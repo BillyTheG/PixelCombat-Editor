@@ -116,6 +116,7 @@ public class XML_Image_Creater {
 					break;
 				}
 				image.resize(1);
+				image.updateOffset();
 				int duration = ((int) currentTimes.get(j).floatValue());
 				String location = (image == null) ? "" : image.getURL();
 

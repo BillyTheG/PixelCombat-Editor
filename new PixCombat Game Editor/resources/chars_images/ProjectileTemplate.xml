@@ -2,12 +2,18 @@
 <character>
 	<type>ProjectileTemplate</type>
 	<sprites>
-		<move airBool="true" airIndex="0" loopIndex="0" loops="true">
-			<img duration="50" key="0" x="-1.7800007" y="-1.9200001">/images/Projectile_Shana_Fire_Blast_3.png</img>
-			<img duration="50" key="1" x="-1.7999992" y="-2.08">/images/Projectile_Shana_Fire_Blast_2.png</img>
-			<img duration="50" key="2" x="-1.8999996" y="-2.1400003">/images/Projectile_Shana_Fire_Blast_1.png</img>
-			<img duration="50" key="3" x="-1.9400005" y="-2.3199997">/images/Projectile_Shana_Fire_Blast_0.png</img>
-		</move>
+		<sequence1 airBool="false" airIndex="0" loopIndex="0" loops="false">
+			<img duration="70" key="0" x="-0.12999916" y="-1.1400003">/images/kohaku_special_attack_7.png</img>
+			<img duration="50" key="1" x="1.7000008" y="-1.3500004">/images/dust_kohaku_slash_up_0.png</img>
+			<img duration="50" key="2" x="1.7199993" y="-1.5699997">/images/dust_kohaku_slash_up_1.png</img>
+			<img duration="50" key="3" x="1.7099991" y="-1.5699997">/images/dust_kohaku_slash_up_2.png</img>
+			<img duration="30" key="4" x="2.1499996" y="-2.4400005">/images/dust_kohaku_slash_up_3.png</img>
+			<img duration="140" key="5" x="2.1499996" y="-2.42">/images/dust_kohaku_slash_up_4.png</img>
+			<img duration="50" key="6" x="2.17" y="-2.4300003">/images/dust_kohaku_slash_up_5.png</img>
+			<img duration="50" key="7" x="2.1599998" y="-2.4499998">/images/dust_kohaku_slash_up_6.png</img>
+			<img duration="50" key="8" x="2.0699997" y="-2.4799995">/images/dust_kohaku_slash_up_7.png</img>
+			<img duration="50" key="9" x="1.8700008" y="-2.4700003">/images/dust_kohaku_slash_up_8.png</img>
+			<img duration="50" key="10" x="1.6599998" y="-2.4650002">/images/dust_kohaku_slash_up_9.png</img>
+		</sequence1>
 	</sprites>
 </character>
-9

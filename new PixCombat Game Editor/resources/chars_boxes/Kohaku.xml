@@ -2,34 +2,29 @@
 <character>
 	<type>Kohaku</type>
 	<boxes>
-		<maidenCall>
-			<box_list picture="0">
-				<box height="1.8600006" hurts="false" id="0" width="0.47999954" x="0.020000458" y="-0.9966669" />
-			</box_list>
-			<box_list picture="1">
-				<box height="1.8600006" hurts="false" id="0" width="0.47999954" x="0.033332825" y="-0.99333286" />
-			</box_list>
-			<box_list picture="2">
-				<box height="1.7233334" hurts="false" id="0" width="0.5600014" x="0.09333229" y="-0.95666695" />
-			</box_list>
-			<box_list picture="3">
-				<box height="1.7433338" hurts="false" id="0" width="0.74666595" x="0.059999466" y="-0.9966669" />
-			</box_list>
-			<box_list picture="4">
-				<box height="1.8533325" hurts="false" id="0" width="0.60666656" x="0.14333344" y="-0.99333286" />
-			</box_list>
-			<box_list picture="5">
-				<box height="1.8533344" hurts="false" id="0" width="0.60666656" x="0.09333229" y="-1.0" />
-			</box_list>
-			<box_list picture="6">
-				<box height="1.8199997" hurts="false" id="0" width="0.7433319" x="0.1566658" y="-1.0033331" />
-			</box_list>
-			<box_list picture="7">
-				<box height="1.8600006" hurts="false" id="0" width="0.5" x="0.049999237" y="-1.0" />
-			</box_list>
-			<box_list picture="8">
-				<box height="1.8566666" hurts="false" id="0" width="0.50333405" x="0.13225555" y="-0.9948044" />
-			</box_list>
-		</maidenCall>
+		  <attack5>
+            <box_list picture="0">
+                <box height="1.8266659" hurts="false" id="0" width="0.5933342" x="-0.0066661835" y="-1.0266666" />
+            </box_list>
+            <box_list picture="1">
+                <box height="1.8266659" hurts="false" id="0" width="0.5933342" x="-0.013334274" y="-1.0" />
+            </box_list>
+            <box_list picture="2">
+                <box height="1.8533325" hurts="false" id="0" width="0.5999985" x="0.1333332" y="-0.99333286" />
+                <box height="1.4399986" hurts="true" id="1" width="1.4466667" x="0.8066673" y="-1.4333334" />
+            </box_list>
+            <box_list picture="3">
+                <box height="1.8533325" hurts="false" id="0" width="0.5999985" x="0.19999886" y="-1.0333328" />
+            </box_list>
+            <box_list picture="4">
+                <box height="1.8533344" hurts="false" id="0" width="0.5999985" x="0.06666565" y="-1.0066662" />
+            </box_list>
+            <box_list picture="5">
+                <box height="1.8533325" hurts="false" id="0" width="0.5999985" x="0.06666565" y="-1.0666666" />
+            </box_list>
+            <box_list picture="6">
+                <box height="1.8533325" hurts="false" id="0" width="0.5999985" x="0.059999466" y="-1.0666666" />
+            </box_list>
+        </attack5>
 	</boxes>
 </character>

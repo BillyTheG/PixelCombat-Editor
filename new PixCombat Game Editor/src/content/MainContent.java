@@ -26,6 +26,8 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollBar;
+import javafx.scene.effect.Blend;
+import javafx.scene.effect.BlendMode;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -104,7 +106,7 @@ public class MainContent extends ContentManager {
 
 	// Misc
 	private ScrollBar sc = new ScrollBar();
-	public static Vector2d CENTER = new Vector2d(15f, 11f);
+	public static Vector2d CENTER = new Vector2d(15f, 14f);
 	private static final double PREVIOUS_IMAGE_OPACITY = 0.5;
 	private String currentCharName = "";
 	private IToolObject currentIToolBox = null;
@@ -115,6 +117,9 @@ public class MainContent extends ContentManager {
 	public int screen_width;
 	public int screen_height;
 	public float SCALE_FACTOR =1f;
+	private boolean blendActive = false;
+	private LocatedImage refImage;
+	private boolean drawRefImage;
 
 	// Conctructor
 	public MainContent(Group root, Canvas canvas, Console console, Stage mainStage, Stage consoleStage, int width, int height) {
@@ -157,6 +162,7 @@ public class MainContent extends ContentManager {
 		createMisc();
 		console.println("Content loaded succesfully");
 		setAnimator(new Animator(this));
+
 		repaint();
 
 	}
@@ -219,7 +225,7 @@ public class MainContent extends ContentManager {
 		if (getCurrentBox() != null && getCurrentIndex() < getCurrentBox().size())
 			drawBoxes(SCALE_FACTOR);
 		
-		graphicsContext.setFill(Color.YELLOW);
+		graphicsContext.setFill(Color.RED);
 		int x_pos_center = ((int)(CENTER.x*Editor.FIELD_SIZE))-5;
 		int y_pos_center = ((int)(CENTER.y*Editor.FIELD_SIZE))-5;
 		graphicsContext.fillRect(x_pos_center,y_pos_center, 10, 10);
@@ -301,13 +307,41 @@ public class MainContent extends ContentManager {
 			graphicsContext.setEffect(monochrome);
 			graphicsContext.drawImage(getCurrentImages().get(currentIndex - 1).image, x, y );
 			graphicsContext.setEffect(null);
-			graphicsContext.setGlobalAlpha(1);
+			graphicsContext.setGlobalAlpha(1f);
 		}
 
+		if(refImage != null && drawRefImage) {
+			
+			x = (refImage.getPos().x) * Editor.FIELD_SIZE - (float) refImage.image.getWidth() / 2f;
+			y = (refImage.getPos().y) * Editor.FIELD_SIZE - (float) refImage.image.getHeight() / 2f;
+
+			monochrome = new ColorAdjust();
+			monochrome.setSaturation(-1);
+			graphicsContext.setGlobalAlpha(PREVIOUS_IMAGE_OPACITY);
+			graphicsContext.setEffect(monochrome);
+			graphicsContext.drawImage(refImage.image, x, y );
+			graphicsContext.setEffect(null);
+			graphicsContext.setGlobalAlpha(1f);
+		}
+		
+		
 		x = (getCurrentImage().getPos().x) * Editor.FIELD_SIZE - (float) getCurrentImage().image.getWidth() / 2f;
 		y = (getCurrentImage().getPos().y) * Editor.FIELD_SIZE - (float) getCurrentImage().image.getHeight() / 2f;
 
+		if(blendActive ) {
+			graphicsContext.setGlobalBlendMode(BlendMode.SCREEN);
+			Blend blend = new Blend();
+			blend.setMode(BlendMode.ADD);
+			blend.setOpacity(0.5);
+			Color.rgb(0, 0, 0, 0);
+			graphicsContext.setEffect(blend);
+		}
 		graphicsContext.drawImage(getCurrentImage().image, x, y );
+		if(blendActive) {
+			graphicsContext.setEffect(null);
+			graphicsContext.setGlobalBlendMode(BlendMode.SRC_OVER);
+		}
+		
 		getCurrentImage().drawBorder(graphicsContext);
 	}
 
@@ -360,17 +394,25 @@ public class MainContent extends ContentManager {
 
 	public void updateFile() {
 		// Load Stuff
-		setImages(getXmlReader().loadCharacter(this.getSelectedFile()));
-		setTimes(getXmlReader().getXml_Image_Reader().getTimes());
-		setLoopBools(getXmlReader().getXml_Image_Reader().getLoopBools());
-		setLoopIndices(getXmlReader().getXml_Image_Reader().getLoopIndices());
-
-		if (getImages() == null)
-			console.println("Char went missing.");
-		setupImages();
-		updateImages();
-		myEditAnimation.update();
-		updateImportant();
+		try {
+			Map<String, ArrayList<LocatedImage>> loadStuff = getXmlReader().loadCharacter(this.getSelectedFile());
+			setImages(loadStuff);
+			setTimes(getXmlReader().getXml_Image_Reader().getTimes());
+			setLoopBools(getXmlReader().getXml_Image_Reader().getLoopBools());
+			setLoopIndices(getXmlReader().getXml_Image_Reader().getLoopIndices());
+			if (getImages() == null)
+				console.println("Char went missing.");
+			setupImages();
+			updateImages();
+			myEditAnimation.update();
+			updateImportant();
+		}
+		catch(Exception e) {
+			console.println("Reading the file: " +getSelectedFile().getAbsolutePath() +" could not be initiated successfully due to: "+ e.getMessage());
+			clearAllData();
+			repaint();
+		}
+		
 	}
 
 	private synchronized void setupImages() {
@@ -405,6 +447,7 @@ public class MainContent extends ContentManager {
 		myEditAnimation.getLoopIndex_input().setValue(getLoopIndices().get(getCurrentSeq()).toString());
 		myEditImage.getDuration_input().setText("" + getCurrentTimes().get(getCurrentIndex()));
 		setCurrentBox(getBoxes().get(getCurrentSeq()));
+		setCurrentImages(getImages().get(getCurrentSeq()));
 
 	}
 
@@ -430,6 +473,19 @@ public class MainContent extends ContentManager {
 
 		// Clear Loop Bools
 		getLoopBools().clear();
+		
+		this.currentImage = null;
+		this.refImage = null;
+		this.currentBox = null;
+		this.currentCharName = "";
+		this.currentDuration = 0f;
+		this.currentImages = null;
+		this.currentIndex = 0;
+		this.SCALE_FACTOR = 1f;
+		this.currentTimes = null;
+		this.currPointer = null;
+		
+		
 		System.gc();
 
 	}
@@ -461,6 +517,9 @@ public class MainContent extends ContentManager {
 
 	private synchronized void updateBoxes() {
 
+		if(getCurrentBox() == null)
+			return;
+		
 		if (getCurrentIndex() >= getCurrentBox().size())
 			return;
 

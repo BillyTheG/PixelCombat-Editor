@@ -2,12 +2,15 @@
 <character>
 	<type>Shana</type>
 	<sprites>
-		<attack4 airBool="false" airIndex="0" loopIndex="0" loops="false">
-			<img duration="160" key="0" x="0.29000092" y="-3.1800003">/images/shana_blue_attack4_0.png</img>
-			<img duration="100" key="1" x="0.44000053" y="-3.1599998">/images/shana_blue_attack4_1.png</img>
-			<img duration="100" key="2" x="0.0" y="-2.83">/images/shana_blue_attack4_2.png</img>
-			<img duration="300" key="3" x="-0.23999977" y="-2.8400002">/images/shana_blue_attack4_3.png</img>
-			<img duration="160" key="4" x="-0.25" y="-3.3400002">/images/shana_blue_attack4_4.png</img>
-		</attack4>
+		<airAttack1 airBool="false" airIndex="0" loopIndex="0" loops="false">
+			<img duration="100" key="0" x="0.2800007" y="-3.1599998">/images/shana_blue_stand_0.png</img>
+			<img duration="150" key="1" x="-0.75" y="-3.2200003">/images/shana_blue_intro_0.png</img>
+			<img duration="150" key="2" x="-0.75" y="-3.2200003">/images/shana_blue_intro_1.png</img>
+			<img duration="130" key="3" x="1.8700008" y="-3.2600002">/images/shana_blue_intro_2.png</img>
+			<img duration="140" key="4" x="2.0499992" y="-3.2799997">/images/shana_blue_intro_3.png</img>
+			<img duration="750" key="5" x="2.1900005" y="-3.27">/images/shana_blue_intro_4.png</img>
+			<img duration="200" key="6" x="0.3899994" y="-3.21">/images/shana_blue_intro_5.png</img>
+			<img duration="100" key="7" x="0.2800007" y="-3.1599998">/images/shana_blue_stand_0.png</img>
+		</airAttack1>
 	</sprites>
 </character>

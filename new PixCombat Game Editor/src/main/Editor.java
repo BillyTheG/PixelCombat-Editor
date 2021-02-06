@@ -18,7 +18,9 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
 public class Editor extends Application {
@@ -79,12 +81,14 @@ public class Editor extends Application {
 		
 		this.mainStage.setTitle("PixelCombat Editor");
 		this.mainStage.setResizable(true);
-		this.mainStage.setFullScreen(true);
+		this.mainStage.setFullScreen(false);
 		this.mainStage.setScene(mainScene);
 		this.mainStage.getIcons().add(Other.loadImage("/images/menu/IMG_Editor_Icon.png").image);
 		this.mainStage.addEventHandler(MouseEvent.ANY, mouseController);
 		this.mainStage.addEventHandler(KeyEvent.ANY, keyController);		
 		
+		mainScene.setFill(Color.TRANSPARENT);
+		mainStage.initStyle(StageStyle.TRANSPARENT);
 		//close console if main is closed
 		this.mainStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			@Override

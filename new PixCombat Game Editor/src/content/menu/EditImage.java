@@ -20,6 +20,7 @@ import math.Vector2d;
 public class EditImage extends MenuObject {
 
 	public static final LocatedImage bground = Other.loadImage("/images/menu/IMG_MenuBox_EditImage.png");
+	public static final LocatedImage kohakuFlag = Other.BUTTONICON_CURRENT_IMAGE_SAVED_FLAG;
 
 	private float xOffset;
 	private float yOffset;
@@ -33,6 +34,12 @@ public class EditImage extends MenuObject {
 	private static final ImageView RESET_UNHOVERED = new ImageView(Other.BUTTONICON_RESET.image);
 
 	private Button reset;
+	
+	private static final ImageView REF_HOVERED = new ImageView(Other.BUTTONICON_BUTTON_REF_HOVERED.image);
+	private static final ImageView REF_UNHOVERED = new ImageView(Other.BUTTONICON_BUTTON_REF.image);
+
+	
+	private Button ref;
 
 	public EditImage(Vector2d pos, Group root, MainContent contentManager) {
 		super(pos, root, contentManager);
@@ -43,6 +50,12 @@ public class EditImage extends MenuObject {
 		int xPos = (int) ((getPos().x + xOffset) * Editor.FIELD_SIZE);
 		int yPos = (int) ((getPos().y + yOffset) * Editor.FIELD_SIZE);
 		graphicsContext.drawImage(bground.image, xPos, yPos);
+		if(contentManager.getCurrentImage() != null && contentManager.getCurrentImage().isRef()) {
+			yPos += bground.image.getHeight() - kohakuFlag.image.getHeight() -50;
+			xPos += bground.image.getWidth() - kohakuFlag.image.getWidth() -10;
+		
+			graphicsContext.drawImage(kohakuFlag.image, xPos, yPos);
+		}
 	}
 
 	@Override
@@ -98,11 +111,17 @@ public class EditImage extends MenuObject {
 		this.getDuration_input().setLayoutX(xPos);
 		this.getDuration_input().setLayoutY(yPos);
 
-		xPos = (int) ((getPos().x + xOffset) * Editor.FIELD_SIZE) + 200 + 50;
+		xPos = (int) ((getPos().x + xOffset) * Editor.FIELD_SIZE) + 200 + 90;
 		yPos = (int) ((getPos().y + yOffset) * Editor.FIELD_SIZE) + 15;
 
 		reset.setLayoutX(xPos);
 		reset.setLayoutY(yPos);
+		
+		xPos = (int) ((getPos().x + xOffset) * Editor.FIELD_SIZE) + 200 + 90;
+		yPos = (int) ((getPos().y + yOffset) * Editor.FIELD_SIZE) + 15  + 50;
+
+		ref.setLayoutX(xPos);
+		ref.setLayoutY(yPos);
 	}
 
 	private void createElements() {
@@ -121,6 +140,11 @@ public class EditImage extends MenuObject {
 		reset.setBackground(Background.EMPTY);
 		reset.setOnMouseEntered(e -> reset.setGraphic(RESET_HOVERED));
 		reset.setOnMouseExited(e -> reset.setGraphic(RESET_UNHOVERED));
+		
+		ref = new Button("", REF_UNHOVERED);
+		ref.setBackground(Background.EMPTY);
+		ref.setOnMouseEntered(e -> ref.setGraphic(REF_HOVERED));
+		ref.setOnMouseExited(e -> ref.setGraphic(REF_UNHOVERED));
 
 	}
 
@@ -133,6 +157,21 @@ public class EditImage extends MenuObject {
 					return;
 				imageX_input.setText("" + 0);
 				imageY_input.setText("" + 0);
+			}
+		});
+		
+		ref.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				if (currentImage == null)
+					return;
+				if(contentManager.getRefImage() != null) {
+					contentManager.getRefImage().setRef(false);
+				}
+				
+				contentManager.setRefImage(currentImage);
+				currentImage.setRef(true);
+				contentManager.repaint();
 			}
 		});
 
@@ -246,7 +285,7 @@ public class EditImage extends MenuObject {
 	}
 
 	private void addToRoot() {
-		root.getChildren().addAll(getDuration_input(), imageX_input, imageY_input, reset);
+		root.getChildren().addAll(getDuration_input(), imageX_input, imageY_input, reset,ref);
 	}
 
 	public TextField getImageX_input() {
@@ -271,6 +310,7 @@ public class EditImage extends MenuObject {
 		this.imageX_input.setDisable(disable);
 		this.imageY_input.setDisable(disable);
 		this.reset.setDisable(disable);
+		this.ref.setDisable(disable);
 	}
 
 }

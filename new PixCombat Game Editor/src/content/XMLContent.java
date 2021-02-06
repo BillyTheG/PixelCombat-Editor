@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
@@ -32,17 +36,24 @@ public class XMLContent {
 	
 	
 
-	private void init() throws SAXException 
-	{
-		xml_Reader = XMLReaderFactory.createXMLReader();
-		xml_Image_Reader = new XML_Image_Reader(mainContent);
-		xml_Box_Reader = new XML_Box_Reader();
+	private void init() {
+		try {
+			SAXParserFactory parserFactory = SAXParserFactory.newInstance();
+			SAXParser parser = parserFactory.newSAXParser();
+			xml_Reader = parser.getXMLReader();
+			xml_Image_Reader = new XML_Image_Reader(mainContent);
+			xml_Box_Reader = new XML_Box_Reader();
+		} catch (SAXException | ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
 	}
 
 
 
 
-	public Map<String, ArrayList<LocatedImage>> loadCharacter(File file) {
+	public Map<String, ArrayList<LocatedImage>> loadCharacter(File file) throws Exception {
 
 		Map<String, ArrayList<LocatedImage>> player = new HashMap<String, ArrayList<LocatedImage>>();
 
@@ -50,12 +61,14 @@ public class XMLContent {
 		{
 			InputStream stream = new FileInputStream(file.getPath());
 			InputSource source = new InputSource(stream);
+			init();
+			
 			xml_Reader.setContentHandler(xml_Image_Reader);
 			xml_Reader.parse(source);
 			player = xml_Image_Reader.getCharacter();
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw e;
 		}
 
 		return player;
